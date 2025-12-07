@@ -1,17 +1,35 @@
-import ButtonAccount from "@/components/ButtonAccount";
+'use client';
 
-export const dynamic = "force-dynamic";
+import { useState } from 'react';
+import HeaderDashboard from '@/components/HeaderDashboard';
+import TextHumanizer from '@/components/TextHumanizer';
 
-// This is a private page: It's protected by the layout.js component which ensures the user is authenticated.
-// It's a server compoment which means you can fetch data (like the user profile) before the page is rendered.
-// See https://shipfa.st/docs/tutorials/private-page
-export default async function Dashboard() {
+export default function DashboardPage() {
+  const [userData, setUserData] = useState({
+    credits: null,
+    plan: 'free'
+  });
+
+  const handleDataLoaded = (data) => {
+    setUserData(data);
+  };
+
+  const handleCreditsUpdate = (newCredits) => {
+    setUserData(prev => ({ ...prev, credits: newCredits }));
+  };
+
   return (
-    <main className="min-h-screen p-8 pb-24">
-      <section className="max-w-xl mx-auto space-y-8">
-        <ButtonAccount />
-        <h1 className="text-3xl md:text-4xl font-extrabold">Private Page</h1>
-      </section>
-    </main>
+    <>
+      <HeaderDashboard 
+        onDataLoaded={handleDataLoaded}
+      />
+      <main className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50  py-12 px-4">
+        <TextHumanizer 
+          initialCredits={userData.credits}
+          userPlan={userData.plan}
+          onCreditsUpdate={handleCreditsUpdate}
+        />
+      </main>
+    </>
   );
 }

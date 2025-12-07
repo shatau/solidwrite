@@ -1,8 +1,8 @@
-# Claude Instructions for ShipFast SaaS Boilerplate
+# Claude Instructions for SolidWrite SaaS Boilerplate
 
 ## Project Context
 
-You are working on **ShipFast**, a comprehensive Next.js SaaS boilerplate designed to help developers quickly launch their SaaS applications. This project includes authentication, payments, database management, email functionality, and a modern UI framework.
+You are working on **SolidWrite**, a comprehensive Next.js SaaS boilerplate designed to help developers quickly launch their SaaS applications. This project includes authentication, payments, database management, email functionality, and a modern UI framework.
 
 ### Technology Stack
 - **Frontend**: Next.js 15 with App Router, React 19, Tailwind CSS, DaisyUI
@@ -85,7 +85,7 @@ export default async function ExamplePage() {
 
 // Add metadata for SEO
 export const metadata = {
-  title: "Example Page - ShipFast",
+  title: "Example Page - SolidWrite",
   description: "Example page description",
 };
 ```

@@ -1,70 +1,91 @@
-const Arrow = ({ extraStyle }) => {
-  return (
-    <svg
-      className={`shrink-0 w-12 fill-neutral-content opacity-70 ${extraStyle}`}
-      viewBox="0 0 138 138"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <g>
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M72.9644 5.31431C98.8774 43.8211 83.3812 88.048 54.9567 120.735C54.4696 121.298 54.5274 122.151 55.0896 122.639C55.6518 123.126 56.5051 123.068 56.9922 122.506C86.2147 88.9044 101.84 43.3918 75.2003 3.80657C74.7866 3.18904 73.9486 3.02602 73.3287 3.44222C72.7113 3.85613 72.5484 4.69426 72.9644 5.31431Z"
-        />
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M56.5084 121.007C56.9835 118.685 57.6119 115.777 57.6736 115.445C59.3456 106.446 59.5323 97.67 58.4433 88.5628C58.3558 87.8236 57.6824 87.2948 56.9433 87.3824C56.2042 87.4699 55.6756 88.1435 55.7631 88.8828C56.8219 97.7138 56.6432 106.225 55.0203 114.954C54.926 115.463 53.5093 121.999 53.3221 123.342C53.2427 123.893 53.3688 124.229 53.4061 124.305C53.5887 124.719 53.8782 124.911 54.1287 125.015C54.4123 125.13 54.9267 125.205 55.5376 124.926C56.1758 124.631 57.3434 123.699 57.6571 123.487C62.3995 120.309 67.4155 116.348 72.791 113.634C77.9171 111.045 83.3769 109.588 89.255 111.269C89.9704 111.475 90.7181 111.057 90.9235 110.342C91.1288 109.626 90.7117 108.878 89.9963 108.673C83.424 106.794 77.3049 108.33 71.5763 111.223C66.2328 113.922 61.2322 117.814 56.5084 121.007Z"
-        />
-      </g>
-    </svg>
-  );
-};
-const Step = ({ emoji, text }) => {
-  return (
-    <div className="w-full md:w-48 flex flex-col gap-2 items-center justify-center">
-      <span className="text-4xl">{emoji}</span>
-      <h3 className="font-bold">{text}</h3>
-    </div>
-  );
-};
+"use client"
+import { Shield, CheckCircle } from "lucide-react"
 
-// Problem Agitation: A crucial, yet overlooked, component for a landing page that sells.
-// It goes under your Hero section, and above your Features section.
-// Your Hero section makes a promise to the customer: "Our product will help you achieve XYZ".
-// Your Problem section explains what happens to the customer if its problem isn't solved.
-// The copy should NEVER mention your product. Instead, it should dig the emotional outcome of not fixing a problem.
-// For instance:
-// - Hero: "ShipFast helps developers launch startups fast"
-// - Problem Agitation: "Developers spend too much time adding features, get overwhelmed, and quit." (not about ShipFast at all)
-// - Features: "ShipFast has user auth, Stripe, emails all set up for you"
 const Problem = () => {
+  const detectors = [
+    { name: "Turnitin", bypass: true },
+    { name: "GPTZero", bypass: true },
+    { name: "ZeroGPT", bypass: true },
+    // { name: "Originality.ai", bypass: true },
+    { name: "Copyleaks", bypass: true },
+    // { name: "Writer.com", bypass: true },
+    { name: "Grammarly", bypass: true },
+    { name: "QuillBot", bypass: true },
+  ]
+
   return (
-    <section className="bg-neutral text-neutral-content">
-      <div className="max-w-7xl mx-auto px-8 py-16 md:py-32 text-center">
-        <h2 className="max-w-3xl mx-auto font-extrabold text-4xl md:text-5xl tracking-tight mb-6 md:mb-8">
-          80% of startups fail because founders never launch
-        </h2>
-        <p className="max-w-xl mx-auto text-lg opacity-90 leading-relaxed mb-12 md:mb-20">
-          Emails, DNS records, user authentication... There&apos;s so much going
-          on.
-        </p>
+    <section className=" bg-white py-20 lg:py-10">
+      <div className="max-w-8xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-16">
+          {/* <div className="inline-flex items-center gap-2 bg-orange-200 text-orange-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <Shield className="w-4 h-4" />
+            Industry-Leading Detection Bypass
+          </div> */}
 
-        <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-6">
-          <Step emoji="🧑‍💻" text="8 hrs to add Stripe" />
+          <h2 className="text-4xl lg:text-3xl font-bold mb-6 leading-tight text-gray-900">
+            Bypass All Major
+            <span className="block bg-gradient-to-r from-orange-700 to-orange-600 bg-clip-text text-transparent">
+              AI Content Detectors
+            </span>
+          </h2>
 
-          <Arrow extraStyle="max-md:-scale-x-100 md:-rotate-90" />
-
-          <Step emoji="😮‍💨" text="Struggle to find time" />
-
-          <Arrow extraStyle="md:-scale-x-100 md:-rotate-90" />
-
-          <Step emoji="😔" text="Quit project" />
+          {/* <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            Our advanced humanization technology ensures your content passes through all popular AI detection tools with
+            flying colors.
+          </p> */}
         </div>
+
+        {/* Detector Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-8xl mx-auto">
+                    {detectors.map((detector, index) => (
+            <div
+              key={index}
+              className="bg-white/80 backdrop-blur-sm border border-orange-200 rounded-xl p-6 hover:bg-white transition-all duration-300 group shadow-sm"
+            >
+              <div className="flex flex-col items-center text-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-700 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <Shield className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">{detector.name}</h3>
+                <div className="flex items-center gap-2 text-orange-700 text-sm font-medium">
+                  <CheckCircle className="w-4 h-4" />
+                  <span>Bypassed</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Stats Section */}
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
+          <div className="text-center p-8 bg-white/70 backdrop-blur-sm border border-orange-200 rounded-2xl shadow-sm">
+            <div className="text-5xl font-bold bg-gradient-to-r from-orange-700 to-orange-600 bg-clip-text text-transparent mb-2">
+              99.8%
+            </div>
+            <p className="text-gray-900 font-medium">Success Rate</p>
+            <p className="text-sm text-gray-600 mt-2">Bypass accuracy across all detectors</p>
+          </div>
+
+          <div className="text-center p-8 bg-white/70 backdrop-blur-sm border border-orange-200 rounded-2xl shadow-sm">
+            <div className="text-5xl font-bold bg-gradient-to-r from-orange-700 to-orange-600 bg-clip-text text-transparent mb-2">
+              50K+
+            </div>
+            <p className="text-gray-900 font-medium">Active Users</p>
+            <p className="text-sm text-gray-600 mt-2">Trusted by students and professionals</p>
+          </div>
+
+          <div className="text-center p-8 bg-white/70 backdrop-blur-sm border border-orange-200 rounded-2xl shadow-sm">
+            <div className="text-5xl font-bold bg-gradient-to-r from-orange-700 to-orange-600 bg-clip-text text-transparent mb-2">
+              10M+
+            </div>
+            <p className="text-gray-900 font-medium">Words Humanized</p>
+            <p className="text-sm text-gray-600 mt-2">Processing millions of words monthly</p>
+          </div>
+        </div> */}
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Problem;
+export default Problem

@@ -1,90 +1,111 @@
 const config = {
-  // REQUIRED
-  appName: "ShipFast",
-  // REQUIRED: a short description of your app for SEO tags (can be overwritten)
+  appName: "SolidWrite",
   appDescription:
-    "The NextJS boilerplate with all you need to build your SaaS, AI tool, or any other web app.",
-  // REQUIRED (no https://, not trialing slash at the end, just the naked domain)
-  domainName: "shipfa.st",
+    "Transform AI-generated text into natural, human-like content that bypasses AI detection.",
+  domainName: "SolidWrite.com",
   crisp: {
-    // Crisp website ID. IF YOU DON'T USE CRISP: just remove this => Then add a support email in this config file (resend.supportEmail) otherwise customer support won't work.
     id: "",
-    // Hide Crisp by default, except on route "/". Crisp is toggled with <ButtonSupport/>. If you want to show Crisp on every routes, just remove this below
     onlyShowOnRoutes: ["/"],
   },
   stripe: {
-    // Create multiple plans in your Stripe dashboard, then add them here. You can add as many plans as you want, just make sure to add the priceId
     plans: [
+      // MONTHLY PLANS
       {
-        // REQUIRED — we use this to find the plan in the webhook (for instance if you want to update the user's credits based on the plan)
-        priceId:
-          process.env.NODE_ENV === "development"
-            ? "price_1Niyy5AxyNprDp7iZIqEyD2h"
-            : "price_456",
-        //  REQUIRED - Name of the plan, displayed on the pricing page
-        name: "Starter",
-        // A friendly description of the plan, displayed on the pricing page. Tip: explain why this plan and not others
-        description: "Perfect for small projects",
-        // The price you want to display, the one user will be charged on Stripe.
-        price: 79,
-        // If you have an anchor price (i.e. $29) that you want to display crossed out, put it here. Otherwise, leave it empty
-        priceAnchor: 99,
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkK4GubYQbBbhWJriHIpbR" : "price_1SbiOkKBnTv7JXWROJag4V1o",
+        name: "Basic",
+        billingInterval: "monthly",  // ← ADD THIS
+        description: "Best for students who need basic humanization features",
+        price: 5.99,
+        credits: 5000,
+        perRequestLimit: 500,
         features: [
-          {
-            name: "NextJS boilerplate",
-          },
-          { name: "User oauth" },
-          { name: "Database" },
-          { name: "Emails" },
+          { name: "5,000 words per month" },
+          { name: "Basic AI Humanizer" },
         ],
       },
       {
-        // This plan will look different on the pricing page, it will be highlighted. You can only have one plan with isFeatured: true
         isFeatured: true,
-        priceId:
-          process.env.NODE_ENV === "development"
-            ? "price_1O5KtcAxyNprDp7iftKnrrpw"
-            : "price_456",
-        name: "Advanced",
-        description: "You need more power",
-        price: 99,
-        priceAnchor: 149,
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkKUGubYQbBbhWwvqkPTzh" : "price_1SbiPIKBnTv7JXWRxPpg1isa",
+        name: "Pro",
+        billingInterval: "monthly",  // ← ADD THIS
+        description: "Perfect for professional writing",
+        price: 19.99,
+        credits: 15000,
+        perRequestLimit: 1500,
         features: [
-          {
-            name: "NextJS boilerplate",
-          },
-          { name: "User oauth" },
-          { name: "Database" },
-          { name: "Emails" },
-          { name: "1 year of updates" },
-          { name: "24/7 support" },
+          { name: "15,000 words per month" },
+        ],
+      },
+      {
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkKsGubYQbBbhW7Tp5A5Cp" : "price_1SbiPjKBnTv7JXWRMbCJ7Fqp",
+        name: "Ultra",
+        billingInterval: "monthly",  // ← ADD THIS
+        description: "For blogs and long-form writing",
+        price: 39.99,
+        credits: 30000,
+        perRequestLimit: 3000,
+        features: [
+          { name: "30,000 words per month" },
+        ],
+      },
+      // ANNUAL PLANS
+      {
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkM5GubYQbBbhWSVzXWKyM" : "price_1SbiQ7KBnTv7JXWRruqVX3Vx",
+        name: "Basic",
+        billingInterval: "annual",  // ← ADD THIS
+        description: "Best for students who need basic humanization features",
+        price: 2.99,
+        priceAnchor: 5.99,
+        credits: 5000,
+        perRequestLimit: 500,
+        features: [
+          { name: "5,000 words per month" },
+        ],
+      },
+      {
+        isFeatured: true,
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkMwGubYQbBbhWPIHRI7ys" : "price_1SbiQwKBnTv7JXWRzGbPHxQL",
+        name: "Pro",
+        billingInterval: "annual",  // ← ADD THIS
+        description: "Perfect for professional writing",
+        price: 9.99,
+        priceAnchor: 19.99,
+        credits: 15000,
+        perRequestLimit: 1500,
+        features: [
+          { name: "15,000 words per month" },
+        ],
+      },
+      {
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkNYGubYQbBbhWfyMUCcg0" : "price_1SbiRPKBnTv7JXWRPGSQKvtk",
+        name: "Ultra",
+        billingInterval: "annual",  // ← ADD THIS
+        description: "For blogs and long-form writing",
+        price: 19.99,
+        priceAnchor: 39.99,
+        credits: 30000,
+        perRequestLimit: 3000,
+        features: [
+          { name: "30,000 words per month" },
         ],
       },
     ],
   },
   aws: {
-    // If you use AWS S3/Cloudfront, put values in here
     bucket: "bucket-name",
     bucketUrl: `https://bucket-name.s3.amazonaws.com/`,
-    cdn: "https://cdn-id.cloudfront.net/",
+    cdn: "https://cdn-id.cloudfront.net/"
   },
   resend: {
-    // REQUIRED — Email 'From' field to be used when sending magic login links
-    fromNoReply: `ShipFast <noreply@resend.shipfa.st>`,
-    // REQUIRED — Email 'From' field to be used when sending other emails, like abandoned carts, updates etc..
-    fromAdmin: `Marc at ShipFast <marc@resend.shipfa.st>`,
-    // Email shown to customer if need support. Leave empty if not needed => if empty, set up Crisp above, otherwise you won't be able to offer customer support."
-    supportEmail: "marc.louvion@gmail.com",
+    fromNoReply: `SolidWrite <noreply@SolidWrite.com>`,
+    fromAdmin: `Support at SolidWrite <support@SolidWrite.com>`,
+    supportEmail: "support@solidwrite.com",
   },
   colors: {
-    // REQUIRED — The DaisyUI theme to use (added to the main layout.js). Leave blank for default (light & dark mode). If you any other theme than light/dark, you need to add it in config.tailwind.js in daisyui.themes.
-    theme: "light",
-    // REQUIRED — This color will be reflected on the whole app outside of the document (loading bar, Chrome tabs, etc..). By default it takes the primary color from your DaisyUI theme (make sure to update your the theme name after "data-theme=")
-    // OR you can just do this to use a custom color: main: "#f37055". HEX only.
-    main: "hsl(var(--p))", // Uses the primary color from the DaisyUI theme dynamically
+    theme: "silk",
+    main: "hsl(var(--p))",
   },
   auth: {
-    // REQUIRED — the path to log in users. It's use to protect private routes (like /dashboard). It's used in apiClient (/libs/api.js) upon 401 errors from our API
     loginUrl: "/api/auth/signin",
     callbackUrl: "/dashboard",
   },

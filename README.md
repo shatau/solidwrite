@@ -1,6 +1,6 @@
-# ShipFast — Javascript
+# SolidWrite — Javascript
 
-Hey maker 👋 it's Marc from [ShipFast](https://shipfa.st/docs). Let's get your startup off the ground, FAST ⚡️
+Hey maker 👋 it's Marc from [SolidWrite](https://shipfa.st/docs). Let's get your startup off the ground, FAST ⚡️
 
 <sub>**Watch/Star the repo to be notified when updates are pushed**</sub>
 
@@ -15,7 +15,7 @@ Hey maker 👋 it's Marc from [ShipFast](https://shipfa.st/docs). Let's get your
 ## Links
 
 -   [📚 Documentation](https://shipfa.st/docs)
--   [📣 Updates](https://shipfast.beehiiv.com/)
+-   [📣 Updates](https://SolidWrite.beehiiv.com/)
 -   [🧑‍💻 Discord](https://shipfa.st/dashboard)
 -   [🥇 Leaderboard](https://shipfa.st/leaderboard)
 
@@ -26,12 +26,12 @@ Reach out at hello@shipfa.st
 Let's ship it, FAST ⚡️
 
 
-**📈 Grow your startup with [DataFast](https://datafa.st?ref=shipfast_readme)**
+**📈 Grow your startup with [DataFast](https://datafa.st?ref=SolidWrite_readme)**
 
 -   Analyze your traffic
 -   Get insights on your customers
 -   Make data-driven decisions
 
-ShipFast members get 30% OFF on all plans! 🎁
+SolidWrite members get 30% OFF on all plans! 🎁
 
 ![datafast](https://github.com/user-attachments/assets/085453a6-8a66-45be-b7ea-a7a08e856ed8)

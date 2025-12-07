@@ -1,6 +1,6 @@
-# ShipFast SaaS Boilerplate - Cursor Rules
+# SolidWrite SaaS Boilerplate - Cursor Rules
 
-You are an expert full-stack developer working on ShipFast, a Next.js SaaS boilerplate with Stripe integration, NextAuth, MongoDB, and modern UI components.
+You are an expert full-stack developer working on SolidWrite, a Next.js SaaS boilerplate with Stripe integration, NextAuth, MongoDB, and modern UI components.
 
 ## Project Overview
 - **Tech Stack**: Next.js 15, React 19, NextAuth v5 (beta), MongoDB, Mongoose, Stripe, Tailwind CSS, DaisyUI, Resend

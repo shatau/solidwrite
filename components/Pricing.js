@@ -1,107 +1,268 @@
-import config from "@/config";
-import ButtonCheckout from "./ButtonCheckout";
+"use client"
 
-// <Pricing/> displays the pricing plans for your app
-// It's your Stripe config in config.js.stripe.plans[] that will be used to display the plans
-// <ButtonCheckout /> renders a button that will redirect the user to Stripe checkout called the /api/stripe/create-checkout API endpoint with the correct priceId
+import { useState } from "react"
+import { Check, Zap, Crown, Sparkles } from "lucide-react"
+import ButtonCheckout from "./ButtonCheckout"
 
 const Pricing = () => {
+  const [billingCycle, setBillingCycle] = useState("annual")
+
+  const pricingData = {
+    monthly: [
+      {
+        name: "Basic",
+        icon: Sparkles,
+        description: "Perfect for students and light users",
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkK4GubYQbBbhWJriHIpbR" : "price_basic_monthly_prod",
+        price: 5.99,
+        credits: 5000,
+        perRequestLimit: 500,
+        features: [
+          "5,000 words per month",
+          "Basic AI Humanizer",
+          "Unlimited AI Detection",
+          "Multilingual support",
+          "500 words per request",
+          "Bypass Turnitin & GPTZero",
+        ],
+      },
+      {
+        name: "Pro",
+        icon: Zap,
+        description: "For professionals and frequent users",
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkKUGubYQbBbhWwvqkPTzh" : "price_pro_monthly_prod",
+        price: 19.99,
+        credits: 15000,
+        perRequestLimit: 1500,
+        isFeatured: true,
+        features: [
+          "15,000 words per month",
+          "Advanced AI Humanizer",
+          "Unlimited AI Detection",
+          "Multilingual support",
+          "1,500 words per request",
+          "My Writing Style",
+          "Bypass all AI detectors",
+          "Priority processing",
+        ],
+      },
+      {
+        name: "Ultra",
+        icon: Crown,
+        description: "For power users and agencies",
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkKsGubYQbBbhW7Tp5A5Cp" : "price_ultra_monthly_prod",
+        price: 39.99,
+        credits: 30000,
+        perRequestLimit: 3000,
+        features: [
+          "30,000 words per month",
+          "Advanced AI Humanizer",
+          "Unlimited AI Detection",
+          "Multilingual support",
+          "3,000 words per request",
+          "My Writing Style",
+          "Bypass all AI detectors",
+          "Lightning-fast processing",
+          "Priority support",
+          "Early access to features",
+        ],
+      },
+    ],
+    annual: [
+      {
+        name: "Basic",
+        icon: Sparkles,
+        description: "Perfect for students and light users",
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkM5GubYQbBbhWSVzXWKyM" : "price_basic_annual_prod",
+        price: 2.99,
+        priceAnchor: 5.99,
+        credits: 5000,
+        perRequestLimit: 500,
+        features: [
+          "5,000 words per month",
+          "Basic AI Humanizer",
+          "Unlimited AI Detection",
+          "Multilingual support",
+          "500 words per request",
+          "Bypass Turnitin & GPTZero",
+        ],
+      },
+      {
+        name: "Pro",
+        icon: Zap,
+        description: "For professionals and frequent users",
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkMwGubYQbBbhWPIHRI7ys" : "price_pro_annual_prod",
+        price: 9.99,
+        priceAnchor: 19.99,
+        credits: 15000,
+        perRequestLimit: 1500,
+        isFeatured: true,
+        features: [
+          "15,000 words per month",
+          "Advanced AI Humanizer",
+          "Unlimited AI Detection",
+          "Multilingual support",
+          "1,500 words per request",
+          "My Writing Style",
+          "Bypass all AI detectors",
+          "Priority processing",
+        ],
+      },
+      {
+        name: "Ultra",
+        icon: Crown,
+        description: "For power users and agencies",
+        priceId: process.env.NODE_ENV === "development" ? "price_ultra_annual_dev" : "price_ultra_annual_prod",
+        price: 19.99,
+        priceAnchor: 39.99,
+        credits: 30000,
+        perRequestLimit: 3000,
+        features: [
+          "30,000 words per month",
+          "Advanced AI Humanizer",
+          "Unlimited AI Detection",
+          "Multilingual support",
+          "3,000 words per request",
+          "My Writing Style",
+          "Bypass all AI detectors",
+          "Lightning-fast processing",
+          "Priority support",
+          "Early access to features",
+        ],
+      },
+    ],
+  }
+
+  const currentPlans = pricingData[billingCycle]
+
   return (
-    <section className="bg-base-200 overflow-hidden" id="pricing">
-      <div className="py-24 px-8 max-w-5xl mx-auto">
-        <div className="flex flex-col text-center w-full mb-20">
-          <p className="font-medium text-primary mb-8">Pricing</p>
-          <h2 className="font-bold text-3xl lg:text-5xl tracking-tight">
-            Save hours of repetitive code and ship faster!
-          </h2>
+    <section className="bg-gradient-to-br from-amber-50 via-white to-orange-50 py-20 lg:py-32" id="pricing">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-6">
+          {/* <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <Zap className="w-4 h-4" />
+            Simple, Transparent Pricing
+          </div> */}
+
+          <h2 className="text-4xl lg:text-4xl font-bold text-gray-900 ">Choose the right plan for you</h2>
+
+          {/* <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Credit-based pricing with 1 word = 1 credit. Choose the plan that fits your needs and cancel anytime.
+          </p> */}
         </div>
 
-        <div className="relative flex justify-center flex-col lg:flex-row items-center lg:items-stretch gap-8">
-          {config.stripe.plans.map((plan) => (
-            <div key={plan.priceId} className="relative w-full max-w-lg">
-              {plan.isFeatured && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                  <span
-                    className={`badge text-xs text-primary-content font-semibold border-0 bg-primary`}
-                  >
-                    POPULAR
-                  </span>
-                </div>
-              )}
+        {/* Toggle */}
+        <div className="flex justify-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-white p-1 rounded-xl shadow-lg border border-gray-200">
+            <button
+              onClick={() => setBillingCycle("monthly")}
+              className={`px-8 py-2 rounded-lg font-semibold transition-all ${
+                billingCycle === "monthly" ? "bg-orange-700 text-white shadow-md" : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              Monthly
+            </button>
+            <button
+              onClick={() => setBillingCycle("annual")}
+              className={`px-8 py-2 rounded-lg font-semibold transition-all ${
+                billingCycle === "annual" ? "bg-orange-700 text-white shadow-md" : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              Annual
+              <span className="ml-2 px-3 py-1 bg-orange-100 text-orange-800 text-xs font-semibold rounded-full">
+                Save 50%
+              </span>
+            </button>
+            {/* {billingCycle === "annual" && (
+              <span className="ml-2 px-3 py-1 bg-orange-100 text-orange-800 text-xs font-semibold rounded-full">
+                Save 50%
+              </span>
+            )} */}
+          </div>
+        </div>
 
-              {plan.isFeatured && (
-                <div
-                  className={`absolute -inset-[1px] rounded-[9px] bg-primary z-10`}
-                ></div>
-              )}
+        {/* Pricing Cards */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {currentPlans.map((plan) => {
+            const IconComponent = plan.icon
+            return (
+              <div
+                key={plan.priceId}
+                className={`rounded-2xl border transition-all ${
+                  plan.isFeatured
+                    ? "border-orange-300 bg-white shadow-xl scale-105"
+                    : "border-gray-200 bg-white hover:shadow-lg hover:border-gray-300"
+                }`}
+              >
+                {plan.isFeatured && (
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                    <span className="px-4 py-1 bg-orange-700 text-white text-xs font-bold rounded-full shadow-lg">
+                      MOST POPULAR
+                    </span>
+                  </div>
+                )}
 
-              <div className="relative flex flex-col h-full gap-5 lg:gap-8 z-10 bg-base-100 p-8 rounded-lg">
-                <div className="flex justify-between items-center gap-4">
-                  <div>
-                    <p className="text-lg lg:text-xl font-bold">{plan.name}</p>
-                    {plan.description && (
-                      <p className="text-base-content/80 mt-2">
-                        {plan.description}
-                      </p>
+                <div className="h-full p-8">
+                  {/* Icon & Name */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <div
+                      className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                        plan.isFeatured ? "bg-orange-700" : "bg-gray-100"
+                      }`}
+                    >
+                      <IconComponent className={`w-6 h-6 ${plan.isFeatured ? "text-white" : "text-gray-700"}`} />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-gray-900">{plan.name}</h3>
+                    </div>
+                  </div>
+
+                  <p className="text-gray-600 text-sm mb-6">{plan.description}</p>
+
+                  {/* Pricing */}
+                  <div className="mb-6">
+                    {plan.priceAnchor && (
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-sm text-gray-500 line-through">${plan.priceAnchor}</span>
+                        <span className="text-xs font-semibold text-gray-600">50% off</span>
+                      </div>
+                    )}
+                    <div className="flex items-end gap-2">
+                      <span className="text-5xl font-bold text-gray-900">${plan.price}</span>
+                      <span className="text-gray-600 mb-2">/month</span>
+                    </div>
+                    {billingCycle === "annual" && (
+                      <p className="text-sm text-gray-500 mt-1">Billed ${(plan.price * 12).toFixed(2)} annually</p>
                     )}
                   </div>
-                </div>
-                <div className="flex gap-2">
-                  {plan.priceAnchor && (
-                    <div className="flex flex-col justify-end mb-[4px] text-lg ">
-                      <p className="relative">
-                        <span className="absolute bg-base-content h-[1.5px] inset-x-0 top-[53%]"></span>
-                        <span className="text-base-content/80">
-                          ${plan.priceAnchor}
-                        </span>
-                      </p>
-                    </div>
-                  )}
-                  <p className={`text-5xl tracking-tight font-extrabold`}>
-                    ${plan.price}
-                  </p>
-                  <div className="flex flex-col justify-end mb-[4px]">
-                    <p className="text-xs text-base-content/60 uppercase font-semibold">
-                      USD
-                    </p>
-                  </div>
-                </div>
-                {plan.features && (
-                  <ul className="space-y-2.5 leading-relaxed text-base flex-1">
-                    {plan.features.map((feature, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          className="w-[18px] h-[18px] opacity-80 shrink-0"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
 
-                        <span>{feature.name} </span>
+                  <ButtonCheckout priceId={plan.priceId} mode="subscription" />
+
+                  {/* Features */}
+                  <ul className="mt-8 space-y-4">
+                    {plan.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <Check className="w-5 h-5 text-orange-700 shrink-0 mt-0.5" />
+                        <span className="text-gray-700 text-sm">{feature}</span>
                       </li>
                     ))}
                   </ul>
-                )}
-                <div className="space-y-2">
-                  <ButtonCheckout priceId={plan.priceId} />
-
-                  <p className="flex items-center justify-center gap-2 text-sm text-center text-base-content/80 font-medium relative">
-                    Pay once. Access forever.
-                  </p>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
+        </div>
+
+        {/* Bottom Note */}
+        <div className="text-center mt-16">
+          <p className="text-gray-600">
+            All plans include • Unlimited AI detection • Credits reset monthly • Cancel anytime
+          </p>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Pricing;
+export default Pricing

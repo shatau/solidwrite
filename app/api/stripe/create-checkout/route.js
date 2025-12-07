@@ -4,9 +4,6 @@ import { createCheckout } from "@/libs/stripe";
 import connectMongo from "@/libs/mongoose";
 import User from "@/models/User";
 
-// This function is used to create a Stripe Checkout Session (one-time payment or subscription)
-// It's called by the <ButtonCheckout /> component
-// By default, it doesn't force users to be authenticated. But if they are, it will prefill the Checkout data with their email and/or credit card
 export async function POST(req) {
   const body = await req.json();
 
@@ -33,28 +30,40 @@ export async function POST(req) {
   try {
     const session = await auth();
 
+    console.log("🔵 CREATE CHECKOUT - Session:", session?.user?.id);
+
     await connectMongo();
 
     const user = await User.findById(session?.user?.id);
 
+    console.log("🔵 User found:", user?.email);
+    console.log("🔵 Current plan:", user?.plan);
+    console.log("🔵 Has subscription:", !!user?.subscriptionId);
+
     const { priceId, mode, successUrl, cancelUrl } = body;
+
+    // Note: When user has existing subscription and checks out a new plan,
+    // Stripe automatically creates a new subscription.
+    // The webhook handles canceling the old subscription.
+    if (user?.subscriptionId && mode === 'subscription') {
+      console.log("ℹ️ User has existing subscription - new subscription will be created");
+      console.log("ℹ️ Webhook will handle canceling old subscription:", user.subscriptionId);
+    }
 
     const stripeSessionURL = await createCheckout({
       priceId,
       mode,
       successUrl,
       cancelUrl,
-      // If user is logged in, it will pass the user ID to the Stripe Session so it can be retrieved in the webhook later
       clientReferenceId: user?._id?.toString(),
-      // If user is logged in, this will automatically prefill Checkout data like email and/or credit card for faster checkout
       user,
-      // If you send coupons from the frontend, you can pass it here
-      // couponId: body.couponId,
     });
+
+    console.log("✅ Checkout created with clientReferenceId:", user?._id?.toString());
 
     return NextResponse.json({ url: stripeSessionURL });
   } catch (e) {
-    console.error(e);
+    console.error("❌ Create checkout error:", e);
     return NextResponse.json({ error: e?.message }, { status: 500 });
   }
 }
