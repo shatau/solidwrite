@@ -31,7 +31,7 @@ const Testimonial = ({ i }) => {
       <figure className="relative h-full p-8 bg-white rounded-xl border border-gray-200 hover:border-orange-200 hover:shadow-lg transition-all flex flex-col">
         {/* Quote */}
         <blockquote className="relative flex-1 mb-6">
-          <p className="text-gray-700 leading-relaxed text-base">"{testimonial.text}"</p>
+          <p className="text-gray-700 leading-relaxed text-base">{testimonial.text}</p>
         </blockquote>
 
         {/* Author */}

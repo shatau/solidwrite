@@ -127,12 +127,12 @@ const TermsOfService = () => {
                         {/* Introduction */}
                         <div className="mb-12 p-6 bg-base-200 rounded-lg border border-base-content/10">
                             <p className="text-base leading-relaxed">
-                                This Terms of Service agreement is entered into by you ("you" or
-                                "your") and Elite Systems s.r.o., operating as SolidWrite
-                                ("Company," "we," "us," or "our"). These Legal Terms govern your
+                                This Terms of Service agreement is entered into by you (&quot;you&quot; or
+                                &quot;your&quot;) and Elite Systems s.r.o., operating as SolidWrite
+                                (&quot;Company,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;). These Legal Terms govern your
                                 access to and use of our website at solidwrite.com and any related
                                 products or services provided by SolidWrite (collectively, the
-                                "Services").
+                                &quot;Services&quot;).
                             </p>
                             <p className="text-base leading-relaxed mt-4">
                                 By accessing or using our Services, you agree that you have read,
@@ -182,8 +182,8 @@ const TermsOfService = () => {
                                 We are the owner or licensee of all intellectual property rights
                                 in our Services, including all source code, databases, software,
                                 website designs, audio, video, text, photographs, and graphics
-                                (collectively, the "Content"), as well as the trademarks, service
-                                marks, and logos (the "Marks").
+                                (collectively, the &quot;Content&quot;), as well as the trademarks, service
+                                marks, and logos (the &quot;Marks&quot;).
                             </p>
                             <p>
                                 Subject to your compliance with these Legal Terms, we grant you a
@@ -324,7 +324,7 @@ const TermsOfService = () => {
                             </div>
 
                             <p>
-                                All plans include multilingual support and the "My Writing Style"
+                                All plans include multilingual support and the &quot;My Writing Style&quot;
                                 feature. Annual subscriptions receive a 50% discount compared to
                                 monthly pricing and are billed once per year.
                             </p>
@@ -433,7 +433,7 @@ const TermsOfService = () => {
                             </h2>
                             <p>
                                 Our Services may allow you to post or submit content, comments,
-                                reviews, or other materials ("Contributions"). By submitting
+                                reviews, or other materials (&quot;Contributions&quot;). By submitting
                                 Contributions, you agree that:
                             </p>
                             <ul>
@@ -446,7 +446,7 @@ const TermsOfService = () => {
                                     consequences of posting them
                                 </li>
                                 <li>
-                                    Contributions must not infringe upon any third party's
+                                    Contributions must not infringe upon any third party&apos;s
                                     intellectual property or other rights
                                 </li>
                                 <li>
@@ -664,7 +664,7 @@ const TermsOfService = () => {
                             <h2 className="text-2xl font-bold mb-4">23. Disclaimer</h2>
                             <div className="bg-base-200 p-4 rounded-lg border border-base-content/20">
                                 <p className="font-bold uppercase">
-                                    THE SERVICES ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE"
+                                    THE SERVICES ARE PROVIDED ON AN &quot;AS IS&quot; AND &quot;AS AVAILABLE&quot;
                                     BASIS. YOU AGREE THAT YOUR USE OF THE SERVICES IS AT YOUR SOLE
                                     RISK.
                                 </p>
@@ -757,7 +757,7 @@ const TermsOfService = () => {
                             </p>
                             <p>You may opt out by:</p>
                             <ul>
-                                <li>Clicking the "unsubscribe" link in any marketing email</li>
+                                <li>Clicking the &quot;unsubscribe&quot; link in any marketing email</li>
                                 <li>Adjusting your email preferences in your account settings</li>
                                 <li>Contacting us at support@solidwrite.com</li>
                             </ul>
@@ -773,7 +773,7 @@ const TermsOfService = () => {
                             <ul>
                                 <li>The right to access your personal data</li>
                                 <li>The right to rectification of inaccurate data</li>
-                                <li>The right to erasure ("right to be forgotten")</li>
+                                <li>The right to erasure (&quot;right to be forgotten&quot;)</li>
                                 <li>The right to restrict processing</li>
                                 <li>The right to data portability</li>
                                 <li>The right to object to processing</li>

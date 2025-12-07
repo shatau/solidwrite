@@ -48,7 +48,7 @@ const faqList = [
     answer: (
       <p>
         SolidWrite supports multilingual content humanization including English, Spanish, French, German, Italian,
-        Portuguese, Dutch, and many more. Our AI technology adapts to each language's unique patterns and nuances.
+        Portuguese, Dutch, and many more. Our AI technology adapts to each language&apos;s unique patterns and nuances.
       </p>
     ),
   },
@@ -56,7 +56,7 @@ const faqList = [
     question: "Can I get a refund?",
     answer: (
       <p>
-        Yes! We offer a 7-day money-back guarantee. If you're not satisfied with SolidWrite for any reason, contact our
+        Yes! We offer a 7-day money-back guarantee. If you&apos;re not satisfied with SolidWrite for any reason, contact our
         support team within 7 days of purchase for a full refund.
       </p>
     ),

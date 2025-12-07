@@ -107,9 +107,9 @@ const PrivacyPolicy = () => {
             {/* Introduction */}
             <div className="mb-12 p-6 bg-base-200 rounded-lg border border-base-content/10">
               <p className="text-base leading-relaxed">
-                Elite Systems s.r.o., operating as SolidWrite ("we," "us," or
-                "our") operates the SolidWrite website and services (the
-                "Services"). This Privacy Policy describes how we collect, use,
+                Elite Systems s.r.o., operating as SolidWrite (&quot;we,&quot; &quot;us,&quot; or
+                &quot;our&quot;) operates the SolidWrite website and services (the
+                &quot;Services&quot;). This Privacy Policy describes how we collect, use,
                 and share information about you when you use our Services.
               </p>
               <p className="text-base leading-relaxed mt-4">
@@ -154,7 +154,7 @@ const PrivacyPolicy = () => {
               </h3>
               <ul>
                 <li>
-                  <strong>Device & Browser Data:</strong> IP address, browser
+                  <strong>Device &amp; Browser Data:</strong> IP address, browser
                   type, operating system, device identifiers, and language
                   preferences.
                 </li>
@@ -164,7 +164,7 @@ const PrivacyPolicy = () => {
                   patterns.
                 </li>
                 <li>
-                  <strong>Cookies & Similar Technologies:</strong> We use cookies,
+                  <strong>Cookies &amp; Similar Technologies:</strong> We use cookies,
                   web beacons, and similar tracking technologies to enhance your
                   experience and analyze usage patterns.
                 </li>
@@ -378,7 +378,7 @@ const PrivacyPolicy = () => {
 
             {/* Section 8 */}
             <section id="children" className="mb-12">
-              <h2 className="text-2xl font-bold mb-4">8. Children's Privacy</h2>
+              <h2 className="text-2xl font-bold mb-4">8. Children&apos;s Privacy</h2>
               <p>
                 Our Services are not directed to children under 18. We do not
                 knowingly collect personal data from minors. If you believe we
@@ -445,7 +445,7 @@ const PrivacyPolicy = () => {
               </p>
               <ul>
                 <li>
-                  Clicking the "unsubscribe" link in any marketing email
+                  Clicking the &quot;unsubscribe&quot; link in any marketing email
                 </li>
                 <li>
                   Adjusting your email preferences in your account settings
@@ -488,8 +488,8 @@ const PrivacyPolicy = () => {
                 <div className="bg-base-200 p-4 rounded-lg">
                   <h3 className="font-bold mb-2">Right to Erasure</h3>
                   <p className="text-sm">
-                    Request deletion of your personal data ("right to be
-                    forgotten").
+                    Request deletion of your personal data (&quot;right to be
+                    forgotten&quot;).
                   </p>
                 </div>
 
