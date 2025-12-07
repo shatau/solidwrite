@@ -109,7 +109,14 @@ const Header = () => {
 
       {/* Mobile menu */}
       <div className={`relative z-50 ${isOpen ? "" : "hidden"}`}>
-        <div className="fixed inset-y-0 right-0 z-10 w-full px-6 py-4 overflow-y-auto bg-white sm:max-w-sm shadow-2xl transform origin-right transition ease-in-out duration-300">
+        {/* Backdrop overlay */}
+        <div 
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm"
+          onClick={() => setIsOpen(false)}
+        />
+        
+        {/* Mobile menu panel */}
+        <div className="fixed inset-y-0 right-0 z-10 w-full px-6 py-4 overflow-y-auto bg-white sm:max-w-sm shadow-2xl">
           {/* Logo on mobile */}
           <div className="flex items-center justify-between">
             <Link className="flex items-center gap-2 shrink-0" title={`${config.appName} homepage`} href="/">
