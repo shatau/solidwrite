@@ -15,7 +15,7 @@ const Problem = () => {
 
   return (
     <section className="bg-white py-16 lg:py-20 border-y border-slate-100">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className=" mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4 leading-tight text-slate-900">

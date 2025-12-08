@@ -72,7 +72,7 @@ const Testimonial = ({ i }) => {
 const Testimonials3 = () => {
   return (
     <section id="testimonials" className="relative bg-slate-50 px-6 py-20 lg:py-28">
-      <div className="max-w-6xl mx-auto">
+      <div className=" mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-3">

@@ -137,7 +137,7 @@ const Pricing = () => {
 
   return (
     <section className="bg-slate-50 py-20 lg:py-28" id="pricing">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className=" mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-6">
           <span className="inline-block text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-3">

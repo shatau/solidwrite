@@ -10,7 +10,7 @@ const Hero = () => {
   const [error, setError] = useState(null);
   const [showResults, setShowResults] = useState(false);
   const maxWords = 500;
-  
+
   const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
 
   const handlePaste = async () => {
@@ -78,7 +78,7 @@ const Hero = () => {
       <section className="relative min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 px-6 py-24 lg:py-32 overflow-hidden">
         {/* Subtle background pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
-        
+
         <div className="relative max-w-4xl mx-auto flex flex-col items-center text-center gap-8">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-sm font-medium">
@@ -131,7 +131,7 @@ const Hero = () => {
                   {wordCount} / {maxWords} words
                 </span>
                 <div className="flex gap-3">
-                  <button 
+                  <button
                     onClick={handleDetect}
                     disabled={!text.trim() || wordCount > maxWords || isDetecting}
                     className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 rounded-xl text-sm font-medium transition-all flex items-center gap-2"
@@ -163,7 +163,7 @@ const Hero = () => {
                 {error}
               </div>
             )}
-            
+
             <p className="text-sm text-slate-500 mt-4 text-center">
               {config.appName} converts your AI text into readable, human-like content instantly.
             </p>
@@ -193,8 +193,8 @@ const Hero = () => {
   return (
     <section className="relative bg-gradient-to-b from-slate-50 via-white to-slate-50 px-6 py-24 lg:py-28 overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
-      
-      <div className="relative max-w-7xl mx-auto">
+
+      <div className="relative mx-auto">
         {/* Headline */}
         <div className="text-center mb-12">
           <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight mb-4 text-slate-900">
@@ -236,7 +236,7 @@ const Hero = () => {
                   {wordCount} / {maxWords} words
                 </span>
                 <div className="flex gap-3">
-                  <button 
+                  <button
                     onClick={handleDetect}
                     disabled={!text.trim() || wordCount > maxWords || isDetecting}
                     className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 rounded-xl text-sm font-medium transition-all flex items-center gap-2"

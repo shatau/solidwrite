@@ -48,7 +48,7 @@ const Header = () => {
           ? "bg-white/90 backdrop-blur-xl shadow-sm border-b border-slate-200/50" 
           : "bg-transparent"
       }`}>
-        <nav className="container flex items-center justify-between px-6 py-4 mx-auto max-w-6xl" aria-label="Global">
+        <nav className="container flex items-center justify-between px-6 py-4 mx-auto " aria-label="Global">
           {/* Logo */}
           <div className="flex lg:flex-1">
             <Link className="flex items-center gap-2 shrink-0 group" href="/" title={`${config.appName} homepage`}>

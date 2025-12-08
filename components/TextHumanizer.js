@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Sparkles, FileText, Copy, Check, Clipboard } from 'lucide-react';
+import { Sparkles, FileText, Copy, Check, Clipboard, Loader2 } from 'lucide-react';
 
 export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPlan = 'free' }) {
     const [inputText, setInputText] = useState('');
@@ -17,20 +17,17 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
     // Get word limit based on plan
     const getWordLimit = () => {
         const plan = (userPlan || 'free').toLowerCase();
-        // console.log('Current plan:', plan); // Debug
         switch(plan) {
             case 'basic': return 500;
             case 'pro': return 1500;
             case 'ultra': return 3000;
-            default: return 500; // free plan
+            default: return 500;
         }
     };
 
     const maxWords = getWordLimit();
 
-    // Debug - log when plan changes
     useEffect(() => {
-       // console.log('Plan updated:', userPlan, 'Max words:', maxWords);
     }, [userPlan, maxWords]);
 
     const handlePaste = async () => {
@@ -73,7 +70,6 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                 throw new Error(data.error || 'Detection failed');
             }
 
-            // Update credits via callback instead of fetching
             if (onCreditsUpdate && data.remainingCredits !== undefined) {
                 onCreditsUpdate(data.remainingCredits);
             }
@@ -138,7 +134,6 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
 
             setOutputText(data.output);
             
-            // Update credits via callback instead of fetching
             if (onCreditsUpdate && data.remainingCredits !== undefined) {
                 onCreditsUpdate(data.remainingCredits);
             }
@@ -170,52 +165,43 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
     // Single box view (initial state)
     if (!showResults) {
         return (
-            <div className="w-full mx-auto  max-w-4xl">
+            <div className="w-full mx-auto max-w-4xl">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <p className="text-lg text-base-content/70 max-w-2xl mx-auto">
+                    <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                         Solid Write converts your AI-generated content into fully humanized, undetectable writing—ensuring it passes every AI detection tool
                     </p>
-                    {/* <div className="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-base-300 rounded-full">
-                        <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span className="text-sm font-medium">
-                            {userPlan ? `${userPlan.toUpperCase()} Plan` : 'FREE Plan'}: <span className="text-primary font-semibold">{maxWords.toLocaleString()}</span> words per request
-                        </span>
-                    </div> */}
                 </div>
 
                 {/* Single Input Card */}
-                <div className="card bg-base-100 shadow-2xl">
-                    <div className="card-body p-8">
+                <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200 overflow-hidden">
+                    <div className="p-6 sm:p-8">
+                        {/* Header */}
                         <div className="flex justify-between items-center mb-4">
-                            <h3 className="font-semibold text-lg">Your Text</h3>
-                            <div className="flex items-center gap-4">
-                                <button
-                                    onClick={handlePaste}
-                                    className="btn btn-sm btn-ghost gap-2"
-                                >
-                                    <Clipboard className="w-4 h-4" />
-                                    Paste Text
-                                </button>
-                            </div>
+                            <h3 className="text-base font-semibold text-slate-900">Your Text</h3>
+                            <button
+                                onClick={handlePaste}
+                                className="flex items-center gap-2 px-3 py-1.5 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
+                            >
+                                <Clipboard className="w-4 h-4" />
+                                Paste Text
+                            </button>
                         </div>
 
                         <textarea
                             value={inputText}
                             onChange={(e) => setInputText(e.target.value)}
                             placeholder="Paste your text here..."
-                            className="textarea textarea-bordered w-full h-80 resize-none focus:outline-none focus:border-primary text-base"
+                            className="w-full h-80 resize-none text-slate-800 text-base focus:outline-none placeholder:text-slate-400 border border-slate-200 rounded-xl p-4"
                         />
 
-                        <div className="flex justify-between items-center mt-4">
+                        <div className="flex justify-between items-center mt-4 pt-4 border-t border-slate-100">
                             <div className="flex items-center gap-2">
-                                <span className={`text-sm font-semibold ${wordCount > maxWords ? 'text-error' : 'text-base-content/60'}`}>
+                                <span className={`text-sm font-medium ${wordCount > maxWords ? 'text-red-500' : 'text-slate-400'}`}>
                                     {wordCount.toLocaleString()} / {maxWords.toLocaleString()} words
                                 </span>
                                 {wordCount > maxWords && (
-                                    <span className="badge badge-error badge-sm">Over limit</span>
+                                    <span className="text-xs px-2 py-0.5 bg-red-100 text-red-600 rounded-full font-medium">Over limit</span>
                                 )}
                             </div>
 
@@ -223,11 +209,11 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                                 <button
                                     onClick={handleDetect}
                                     disabled={!inputText.trim() || isDetecting || wordCount > maxWords}
-                                    className="btn btn-primary gap-2 min-w-[140px]"
+                                    className="flex items-center justify-center gap-2 px-5 py-2.5 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 rounded-xl text-sm font-medium transition-all min-w-[140px]"
                                 >
                                     {isDetecting ? (
                                         <>
-                                            <span className="loading loading-spinner loading-sm"></span>
+                                            <Loader2 className="w-4 h-4 animate-spin" />
                                             Checking...
                                         </>
                                     ) : (
@@ -241,11 +227,11 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                                 <button
                                     onClick={handleHumanize}
                                     disabled={!inputText.trim() || isHumanizing || wordCount > maxWords}
-                                    className="btn btn-success text-white gap-2 min-w-[140px]"
+                                    className="flex items-center justify-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all min-w-[140px]"
                                 >
                                     {isHumanizing ? (
                                         <>
-                                            <span className="loading loading-spinner loading-sm"></span>
+                                            <Loader2 className="w-4 h-4 animate-spin" />
                                             Processing...
                                         </>
                                     ) : (
@@ -265,16 +251,13 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
 
     // Two box view (results state)
     return (
-        <div className="w-full bg-gradient-to-br from-amber-50 via-white to-emerald-50 mx-auto">
+        <div className="w-full mx-auto">
             {/* Header with CTA */}
             <div className="text-center mb-8">
-                {/* <h1 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                    Humanize AI Text & Outsmart AI Detectors
-                </h1> */}
-                <p className="text-base text-base-content/70 max-w-2xl mx-auto mb-6">
+                <p className="text-base text-slate-600 max-w-2xl mx-auto mb-6">
                     Solid Write converts your AI-generated content into fully humanized, undetectable writing—ensuring it passes every AI detection tool
                 </p>
-                <button className="btn btn-success btn-lg text-white">
+                <button className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-medium transition-all">
                     Get more words
                 </button>
             </div>
@@ -282,13 +265,13 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
             {/* Two Column Layout */}
             <div className="grid md:grid-cols-2 gap-6">
                 {/* Left Column - Input */}
-                <div className="card bg-base-100 shadow-xl">
-                    <div className="card-body p-6">
-                        <div className="flex justify-between items-center mb-3">
-                            <h3 className="font-semibold text-lg">Your Text</h3>
+                <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200 overflow-hidden">
+                    <div className="p-6">
+                        <div className="flex justify-between items-center mb-4">
+                            <h3 className="text-base font-semibold text-slate-900">Your Text</h3>
                             <button
                                 onClick={handlePaste}
-                                className="btn btn-sm btn-ghost gap-2"
+                                className="flex items-center gap-2 px-3 py-1.5 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
                             >
                                 <Clipboard className="w-4 h-4" />
                             </button>
@@ -298,16 +281,16 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                             value={inputText}
                             onChange={(e) => setInputText(e.target.value)}
                             placeholder="Paste your text here..."
-                            className="textarea textarea-bordered w-full h-96 resize-none focus:outline-none focus:border-primary"
+                            className="w-full h-96 resize-none text-slate-800 text-base focus:outline-none placeholder:text-slate-400 border border-slate-200 rounded-xl p-4"
                         />
 
                         <div className="flex justify-between items-center mt-4">
                             <div className="flex items-center gap-2">
-                                <span className={`text-sm font-semibold ${wordCount > maxWords ? 'text-error' : 'text-base-content/60'}`}>
+                                <span className={`text-sm font-medium ${wordCount > maxWords ? 'text-red-500' : 'text-slate-400'}`}>
                                     {wordCount.toLocaleString()} / {maxWords.toLocaleString()} words
                                 </span>
                                 {wordCount > maxWords && (
-                                    <span className="badge badge-error badge-sm">Over limit</span>
+                                    <span className="text-xs px-2 py-0.5 bg-red-100 text-red-600 rounded-full font-medium">Over limit</span>
                                 )}
                             </div>
 
@@ -315,28 +298,26 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                                 <button
                                     onClick={handleDetect}
                                     disabled={!inputText.trim() || isDetecting || wordCount > maxWords}
-                                    className="btn btn-primary btn-sm gap-2"
+                                    className="flex items-center justify-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 rounded-xl text-sm font-medium transition-all"
                                 >
                                     {isDetecting ? (
                                         <>
-                                            <span className="loading loading-spinner loading-xs"></span>
+                                            <Loader2 className="w-4 h-4 animate-spin" />
                                             Checking...
                                         </>
                                     ) : (
-                                        <>
-                                            Check for AI
-                                        </>
+                                        'Check for AI'
                                     )}
                                 </button>
 
                                 <button
                                     onClick={handleHumanize}
                                     disabled={!inputText.trim() || isHumanizing || wordCount > maxWords}
-                                    className="btn btn-success btn-sm text-white gap-2"
+                                    className="flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all"
                                 >
                                     {isHumanizing ? (
                                         <>
-                                            <span className="loading loading-spinner loading-xs"></span>
+                                            <Loader2 className="w-4 h-4 animate-spin" />
                                             Processing...
                                         </>
                                     ) : (
@@ -352,24 +333,22 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                 </div>
 
                 {/* Right Column - Output */}
-                <div className="card bg-base-100 shadow-xl">
-                    <div className="card-body p-6">
-                        <div className="flex justify-between items-center mb-3">
-                            <h3 className="font-semibold text-lg">Result</h3>
+                <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200 overflow-hidden">
+                    <div className="p-6">
+                        <div className="flex justify-between items-center mb-4">
+                            <h3 className="text-base font-semibold text-slate-900">Result</h3>
                             {outputText && (
                                 <button
                                     onClick={handleCopy}
-                                    className="btn btn-sm btn-ghost gap-2"
+                                    className="flex items-center gap-2 px-3 py-1.5 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
                                 >
                                     {copied ? (
                                         <>
-                                            <Check className="w-4 h-4" />
+                                            <Check className="w-4 h-4 text-emerald-500" />
                                             Copied!
                                         </>
                                     ) : (
-                                        <>
-                                            <Copy className="w-4 h-4" />
-                                        </>
+                                        <Copy className="w-4 h-4" />
                                     )}
                                 </button>
                             )}
@@ -379,17 +358,17 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                         {detectionResult && !outputText ? (
                             <div className="space-y-6 h-96 overflow-y-auto">
                                 <div className="text-center py-8">
-                                    <div className="text-6xl font-bold text-base-content mb-2">
+                                    <div className="text-6xl font-bold text-slate-900 mb-2">
                                         {detectionResult.displayHumanScore}%
                                     </div>
-                                    <div className="text-base font-semibold text-base-content/70 uppercase tracking-wide">
+                                    <div className="text-sm font-semibold text-slate-500 uppercase tracking-wide">
                                         HUMAN WRITTEN
                                     </div>
                                 </div>
 
-                                <div className="w-full bg-base-300 rounded-full h-3 overflow-hidden">
+                                <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
                                     <div
-                                        className="h-3 bg-gradient-to-r from-error via-warning to-success transition-all duration-500"
+                                        className="h-2.5 bg-gradient-to-r from-red-500 via-amber-500 to-emerald-500 transition-all duration-500 rounded-full"
                                         style={{ width: `${detectionResult.displayHumanScore}%` }}
                                     ></div>
                                 </div>
@@ -399,18 +378,18 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                                         {detectionResult.detectorScores && detectionResult.detectorScores.slice(0, 5).map((detector, index) => {
                                             const { humanScore } = detector;
                                             let icon = '⚠️';
-                                            let colorClass = 'text-warning';
+                                            let colorClass = 'text-amber-600';
 
                                             if (humanScore >= 60) {
                                                 icon = '✅';
-                                                colorClass = 'text-success';
+                                                colorClass = 'text-emerald-600';
                                             } else if (humanScore < 40) {
                                                 icon = '⛔';
-                                                colorClass = 'text-error';
+                                                colorClass = 'text-red-500';
                                             }
 
                                             return (
-                                                <div key={index} className="flex items-center gap-1 text-sm">
+                                                <div key={index} className="flex items-center gap-1.5 text-sm px-3 py-1.5 bg-slate-50 rounded-lg">
                                                     <span className="text-xs">{icon}</span>
                                                     <span className={colorClass}>{detector.name}</span>
                                                 </div>
@@ -423,18 +402,18 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                                             {detectionResult.detectorScores.slice(5).map((detector, index) => {
                                                 const { humanScore } = detector;
                                                 let icon = '⚠️';
-                                                let colorClass = 'text-warning';
+                                                let colorClass = 'text-amber-600';
 
                                                 if (humanScore >= 60) {
                                                     icon = '✅';
-                                                    colorClass = 'text-success';
+                                                    colorClass = 'text-emerald-600';
                                                 } else if (humanScore < 40) {
                                                     icon = '⛔';
-                                                    colorClass = 'text-error';
+                                                    colorClass = 'text-red-500';
                                                 }
 
                                                 return (
-                                                    <div key={index} className="flex items-center gap-1 text-sm">
+                                                    <div key={index} className="flex items-center gap-1.5 text-sm px-3 py-1.5 bg-slate-50 rounded-lg">
                                                         <span className="text-xs">{icon}</span>
                                                         <span className={colorClass}>{detector.name}</span>
                                                     </div>
@@ -449,23 +428,23 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                             <textarea
                                 value={outputText}
                                 readOnly
-                                className="textarea textarea-bordered w-full h-96 resize-none"
+                                className="w-full h-96 resize-none text-slate-800 text-base focus:outline-none border border-slate-200 rounded-xl p-4 bg-slate-50"
                             />
                         ) : (
                             /* Loading or Error State */
                             <div className="flex flex-col items-center justify-center h-96">
                                 {isDetecting || isHumanizing ? (
                                     <>
-                                        <span className="loading loading-spinner loading-lg text-primary"></span>
-                                        <p className="mt-4 text-base-content/60">
+                                        <div className="w-12 h-12 rounded-full border-2 border-slate-200 border-t-emerald-500 animate-spin mb-4"></div>
+                                        <p className="text-slate-500">
                                             {isDetecting ? 'Analyzing text...' : 'Humanizing text...'}
                                         </p>
                                     </>
                                 ) : (
                                     <div className="text-center">
-                                        <div className="text-4xl mb-4 text-error">⚠️</div>
-                                        <p className="text-error font-semibold">Something went wrong. Try again.</p>
-                                        <p className="text-sm text-base-content/60 mt-2">Insufficient balance</p>
+                                        <div className="text-4xl mb-4">⚠️</div>
+                                        <p className="text-red-500 font-semibold">Something went wrong. Try again.</p>
+                                        <p className="text-sm text-slate-500 mt-2">Insufficient balance</p>
                                     </div>
                                 )}
                             </div>
@@ -475,7 +454,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                         {(detectionResult || outputText) && (
                             <button
                                 onClick={handleReset}
-                                className="btn btn-ghost btn-sm w-full mt-4"
+                                className="w-full mt-4 py-2.5 text-sm text-slate-600 hover:text-slate-900 transition-colors"
                             >
                                 Start New
                             </button>
