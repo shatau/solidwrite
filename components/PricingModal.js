@@ -230,16 +230,16 @@ const PricingModal = ({ isOpen, onClose, currentPlan = 'free', currentBillingInt
                         Current
                       </span>
                     )}
-                    {!isCurrentPlan && comparison === 'upgrade' && (
+                    {/* {!isCurrentPlan && comparison === 'upgrade' && (
                       <span className="text-xs px-2 py-0.5 bg-blue-500 text-white rounded-full font-medium">
                         ↑ Upgrade
                       </span>
-                    )}
-                    {!isCurrentPlan && comparison === 'downgrade' && (
+                    )} */}
+                    {/* {!isCurrentPlan && comparison === 'downgrade' && (
                       <span className="text-xs px-2 py-0.5 bg-amber-500 text-white rounded-full font-medium">
                         ↓ Downgrade
                       </span>
-                    )}
+                    )} */}
                   </div>
 
                   {/* Plan Name */}
