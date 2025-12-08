@@ -165,7 +165,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
     // Single box view (initial state)
     if (!showResults) {
         return (
-            <div className="w-full mx-auto max-w-6xl">
+            <div className="w-full mx-auto max-w-4xl">
                 {/* Header */}
                 <div className="text-center mb-12">
                     <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -195,7 +195,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                             className="w-full h-80 resize-none text-slate-800 text-base focus:outline-none placeholder:text-slate-400 border border-slate-200 rounded-xl p-4"
                         />
 
-                        <div className="flex justify-between items-center mt-4 pt-4 border-t border-slate-100">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mt-4 pt-4 border-t border-slate-100">
                             <div className="flex items-center gap-2">
                                 <span className={`text-sm font-medium ${wordCount > maxWords ? 'text-red-500' : 'text-slate-400'}`}>
                                     {wordCount.toLocaleString()} / {maxWords.toLocaleString()} words
@@ -205,21 +205,21 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                                 )}
                             </div>
 
-                            <div className="flex gap-3">
+                            <div className="flex gap-3 w-full sm:w-auto">
                                 <button
                                     onClick={handleDetect}
                                     disabled={!inputText.trim() || isDetecting || wordCount > maxWords}
-                                    className="flex items-center justify-center gap-2 px-5 py-2.5 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 rounded-xl text-sm font-medium transition-all min-w-[140px]"
+                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 rounded-xl text-sm font-medium transition-all"
                                 >
                                     {isDetecting ? (
                                         <>
                                             <Loader2 className="w-4 h-4 animate-spin" />
-                                            Checking...
+                                            <span className="hidden sm:inline">Checking...</span>
                                         </>
                                     ) : (
                                         <>
                                             <FileText className="w-4 h-4" />
-                                            Check for AI
+                                            <span>Check for AI</span>
                                         </>
                                     )}
                                 </button>
@@ -227,17 +227,17 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                                 <button
                                     onClick={handleHumanize}
                                     disabled={!inputText.trim() || isHumanizing || wordCount > maxWords}
-                                    className="flex items-center justify-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all min-w-[140px]"
+                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all"
                                 >
                                     {isHumanizing ? (
                                         <>
                                             <Loader2 className="w-4 h-4 animate-spin" />
-                                            Processing...
+                                            <span className="hidden sm:inline">Processing...</span>
                                         </>
                                     ) : (
                                         <>
                                             <Sparkles className="w-4 h-4" />
-                                            Humanize
+                                            <span>Humanize</span>
                                         </>
                                     )}
                                 </button>
@@ -284,7 +284,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                             className="w-full h-96 resize-none text-slate-800 text-base focus:outline-none placeholder:text-slate-400 border border-slate-200 rounded-xl p-4"
                         />
 
-                        <div className="flex justify-between items-center mt-4">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mt-4">
                             <div className="flex items-center gap-2">
                                 <span className={`text-sm font-medium ${wordCount > maxWords ? 'text-red-500' : 'text-slate-400'}`}>
                                     {wordCount.toLocaleString()} / {maxWords.toLocaleString()} words
@@ -294,16 +294,16 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                                 )}
                             </div>
 
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 w-full sm:w-auto">
                                 <button
                                     onClick={handleDetect}
                                     disabled={!inputText.trim() || isDetecting || wordCount > maxWords}
-                                    className="flex items-center justify-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 rounded-xl text-sm font-medium transition-all"
+                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 rounded-xl text-sm font-medium transition-all"
                                 >
                                     {isDetecting ? (
                                         <>
                                             <Loader2 className="w-4 h-4 animate-spin" />
-                                            Checking...
+                                            <span className="hidden sm:inline">Checking...</span>
                                         </>
                                     ) : (
                                         'Check for AI'
@@ -313,12 +313,12 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                                 <button
                                     onClick={handleHumanize}
                                     disabled={!inputText.trim() || isHumanizing || wordCount > maxWords}
-                                    className="flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all"
+                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all"
                                 >
                                     {isHumanizing ? (
                                         <>
                                             <Loader2 className="w-4 h-4 animate-spin" />
-                                            Processing...
+                                            <span className="hidden sm:inline">Processing...</span>
                                         </>
                                     ) : (
                                         <>
