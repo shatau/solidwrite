@@ -1,33 +1,32 @@
-'use client';
-
-import { useState } from 'react';
 import HeaderDashboard from '@/components/HeaderDashboard';
 import TextHumanizer from '@/components/TextHumanizer';
+import { auth } from "@/libs/auth";
+import connectMongo from "@/libs/mongo";
+import User from "@/models/User";
 
-export default function DashboardPage() {
-  const [userData, setUserData] = useState({
-    credits: null,
-    plan: 'free'
-  });
+export default async function DashboardPage() {
+  const session = await auth();
+  
+  await connectMongo();
+  let user = await User.findOne({ email: session.user.email });
 
-  const handleDataLoaded = (data) => {
-    setUserData(data);
-  };
-
-  const handleCreditsUpdate = (newCredits) => {
-    setUserData(prev => ({ ...prev, credits: newCredits }));
-  };
+  if (!user) {
+    user = await User.create({
+      email: session.user.email,
+      name: session.user.name,
+      image: session.user.image,
+      credits: 0,
+      plan: 'free'
+    });
+  }
 
   return (
     <>
-      <HeaderDashboard 
-        onDataLoaded={handleDataLoaded}
-      />
-      <main className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50  py-12 px-4">
+      <HeaderDashboard />
+      <main className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50 py-12 px-4">
         <TextHumanizer 
-          initialCredits={userData.credits}
-          userPlan={userData.plan}
-          onCreditsUpdate={handleCreditsUpdate}
+          initialCredits={user.credits}
+          userPlan={user.plan || 'free'}
         />
       </main>
     </>
