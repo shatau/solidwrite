@@ -17,7 +17,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
     // Get word limit based on plan
     const getWordLimit = () => {
         const plan = (userPlan || 'free').toLowerCase();
-        console.log('Current plan:', plan); // Debug
+        // console.log('Current plan:', plan); // Debug
         switch(plan) {
             case 'basic': return 500;
             case 'pro': return 1500;
@@ -30,7 +30,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
 
     // Debug - log when plan changes
     useEffect(() => {
-        console.log('Plan updated:', userPlan, 'Max words:', maxWords);
+       // console.log('Plan updated:', userPlan, 'Max words:', maxWords);
     }, [userPlan, maxWords]);
 
     const handlePaste = async () => {

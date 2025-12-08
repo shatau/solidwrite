@@ -30,15 +30,15 @@ export async function POST(req) {
   try {
     const session = await auth();
 
-    console.log("🔵 CREATE CHECKOUT - Session:", session?.user?.id);
+    //console.log("🔵 CREATE CHECKOUT - Session:", session?.user?.id);
 
     await connectMongo();
 
     const user = await User.findById(session?.user?.id);
 
-    console.log("🔵 User found:", user?.email);
-    console.log("🔵 Current plan:", user?.plan);
-    console.log("🔵 Has subscription:", !!user?.subscriptionId);
+    // console.log("🔵 User found:", user?.email);
+    // console.log("🔵 Current plan:", user?.plan);
+    // console.log("🔵 Has subscription:", !!user?.subscriptionId);
 
     const { priceId, mode, successUrl, cancelUrl } = body;
 
@@ -46,8 +46,8 @@ export async function POST(req) {
     // Stripe automatically creates a new subscription.
     // The webhook handles canceling the old subscription.
     if (user?.subscriptionId && mode === 'subscription') {
-      console.log("ℹ️ User has existing subscription - new subscription will be created");
-      console.log("ℹ️ Webhook will handle canceling old subscription:", user.subscriptionId);
+      //console.log("ℹ️ User has existing subscription - new subscription will be created");
+      //console.log("ℹ️ Webhook will handle canceling old subscription:", user.subscriptionId);
     }
 
     const stripeSessionURL = await createCheckout({
@@ -59,7 +59,7 @@ export async function POST(req) {
       user,
     });
 
-    console.log("✅ Checkout created with clientReferenceId:", user?._id?.toString());
+    //console.log("✅ Checkout created with clientReferenceId:", user?._id?.toString());
 
     return NextResponse.json({ url: stripeSessionURL });
   } catch (e) {
