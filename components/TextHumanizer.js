@@ -165,7 +165,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
     // Single box view (initial state)
     if (!showResults) {
         return (
-            <div className="w-full mx-auto max-w-4xl">
+            <div className="w-full mx-auto max-w-6xl">
                 {/* Header */}
                 <div className="text-center mb-12">
                     <p className="text-lg text-slate-600 max-w-2xl mx-auto">

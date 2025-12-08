@@ -79,7 +79,7 @@ const Hero = () => {
         {/* Subtle background pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
 
-        <div className="relative max-w-4xl mx-auto flex flex-col items-center text-center gap-8">
+        <div className="relative max-w-6xl mx-auto flex flex-col items-center text-center gap-8">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-sm font-medium">
             <span className="w-2 h-2 rounded-full text-emerald-500 animate-pulse" />
