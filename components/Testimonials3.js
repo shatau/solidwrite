@@ -39,7 +39,7 @@ const Testimonial = ({ i }) => {
 
         {/* Quote */}
         <blockquote className="relative flex-1 mb-6">
-          <p className="text-slate-600 leading-relaxed text-sm">"{testimonial.text}"</p>
+          <p className="text-slate-600 leading-relaxed text-sm">&quot;{testimonial.text}&quot;</p>
         </blockquote>
 
         {/* Author */}
