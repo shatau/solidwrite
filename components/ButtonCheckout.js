@@ -28,7 +28,7 @@ const ButtonCheckout = ({ priceId, mode = "subscription", buttonText = "Subscrib
 
   return (
     <button
-      className="btn bg-orange-700 btn-block group text-white font-semibold"
+      className="btn bg-emerald-700 btn-block group text-white font-semibold"
       onClick={() => handlePayment()}
       disabled={isLoading}
     >

@@ -37,35 +37,38 @@ const features = [
 
 const FeaturesGrid = () => {
   return (
-    <section className="relative bg-white px-6 py-16 lg:py-24 overflow-hidden">
+    <section className="relative bg-white px-6 py-20 lg:py-28 overflow-hidden">
       {/* Background accent */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-orange-100/30 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-emerald-50 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Built on Science</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <span className="inline-block text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-3">
+            Built on Science
+          </span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Why Writers Trust SolidWrite</h2>
+          <p className="text-slate-600 max-w-xl mx-auto">
             Our AI humanizer is built on advanced research and proven technology to deliver results you can trust.
           </p>
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature) => {
             const Icon = feature.icon
             return (
               <div
                 key={feature.title}
-                className="flex flex-col items-start p-8 bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl border border-orange-200/50 hover:border-orange-300 transition-colors"
+                className="group flex flex-col items-start p-6 bg-slate-50 rounded-xl border border-slate-100 hover:bg-white hover:border-slate-200 hover:shadow-md transition-all duration-300"
               >
-                <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-orange-700 mb-6">
-                  <Icon className="w-6 h-6 text-white" />
+                <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-emerald-100 text-emerald-600 mb-5 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                  <Icon className="w-5 h-5" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">{feature.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{feature.description}</p>
               </div>
             )
           })}

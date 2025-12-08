@@ -44,7 +44,7 @@ export default function DashboardPage() {
   return (
     <>
       <HeaderDashboard onDataLoaded={handleDataLoaded} />
-      <main className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-orange-50 py-12 px-4">
+      <main className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-emerald-50 py-12 px-4">
         <TextHumanizer 
           initialCredits={userData.credits}
           userPlan={userData.plan}

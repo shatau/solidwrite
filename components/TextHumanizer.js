@@ -265,7 +265,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
 
     // Two box view (results state)
     return (
-        <div className="w-full bg-gradient-to-br from-amber-50 via-white to-orange-50 mx-auto">
+        <div className="w-full bg-gradient-to-br from-amber-50 via-white to-emerald-50 mx-auto">
             {/* Header with CTA */}
             <div className="text-center mb-8">
                 {/* <h1 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">

@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { Star } from "lucide-react"
 
 const list = [
   {
@@ -28,32 +29,39 @@ const Testimonial = ({ i }) => {
 
   return (
     <li key={i}>
-      <figure className="relative h-full p-8 bg-white rounded-xl border border-gray-200 hover:border-orange-200 hover:shadow-lg transition-all flex flex-col">
+      <figure className="relative h-full p-6 bg-white rounded-2xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all flex flex-col">
+        {/* Stars */}
+        <div className="flex gap-1 mb-4">
+          {[...Array(5)].map((_, idx) => (
+            <Star key={idx} className="w-4 h-4 fill-amber-400 text-amber-400" />
+          ))}
+        </div>
+
         {/* Quote */}
         <blockquote className="relative flex-1 mb-6">
-          <p className="text-gray-700 leading-relaxed text-base">{testimonial.text}</p>
+          <p className="text-slate-600 leading-relaxed text-sm">"{testimonial.text}"</p>
         </blockquote>
 
         {/* Author */}
-        <figcaption className="flex items-center gap-4 pt-6 border-t border-gray-100">
+        <figcaption className="flex items-center gap-3 pt-5 border-t border-slate-100">
           <div className="flex-shrink-0">
             {testimonial.img ? (
               <Image
-                className="w-12 h-12 rounded-full object-cover"
+                className="w-10 h-10 rounded-full object-cover"
                 src={testimonial.img || "/placeholder.svg"}
                 alt={testimonial.name}
-                width={48}
-                height={48}
+                width={40}
+                height={40}
               />
             ) : (
-              <div className="w-12 h-12 rounded-full flex items-center justify-center bg-orange-100 text-orange-700 font-semibold">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center bg-emerald-100 text-emerald-600 font-semibold text-sm">
                 {testimonial.name.charAt(0)}
               </div>
             )}
           </div>
           <div>
-            <div className="font-semibold text-gray-900">{testimonial.name}</div>
-            {testimonial.username && <div className="text-sm text-gray-600">@{testimonial.username}</div>}
+            <div className="font-medium text-slate-900 text-sm">{testimonial.name}</div>
+            {testimonial.username && <div className="text-xs text-slate-500">@{testimonial.username}</div>}
           </div>
         </figcaption>
       </figure>
@@ -63,16 +71,19 @@ const Testimonial = ({ i }) => {
 
 const Testimonials3 = () => {
   return (
-    <section id="testimonials" className="relative bg-gradient-to-b from-white to-orange-50 px-6 py-16 lg:py-24">
+    <section id="testimonials" className="relative bg-slate-50 px-6 py-20 lg:py-28">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Trusted by thousands</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">See what users are saying about their results.</p>
+          <span className="inline-block text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-3">
+            Testimonials
+          </span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Trusted by thousands</h2>
+          <p className="text-slate-600 max-w-xl mx-auto">See what users are saying about their results.</p>
         </div>
 
         {/* Testimonials Grid */}
-        <ul role="list" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <ul role="list" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(3)].map((e, i) => (
             <Testimonial key={i} i={i} />
           ))}

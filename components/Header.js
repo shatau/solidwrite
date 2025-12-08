@@ -28,16 +28,27 @@ const links = [
 const Header = () => {
   const searchParams = useSearchParams()
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const { status } = useSession()
 
   useEffect(() => {
     setIsOpen(false)
   }, [searchParams])
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
   return (
     <>
-      <header className="w-full bg-white border-b border-gray-200 sticky top-0 z-40 backdrop-blur-lg bg-white/95">
-        <nav className="container flex items-center justify-between px-6 py-4 mx-auto max-w-8xl" aria-label="Global">
+      <header className={`w-full fixed top-0 z-40 transition-all duration-300 ${
+        scrolled 
+          ? "bg-white/90 backdrop-blur-xl shadow-sm border-b border-slate-200/50" 
+          : "bg-transparent"
+      }`}>
+        <nav className="container flex items-center justify-between px-6 py-4 mx-auto max-w-6xl" aria-label="Global">
           {/* Logo */}
           <div className="flex lg:flex-1">
             <Link className="flex items-center gap-2 shrink-0 group" href="/" title={`${config.appName} homepage`}>
@@ -50,7 +61,7 @@ const Header = () => {
                 width={32}
                 height={32}
               />
-              <span className="font-bold text-xl text-gray-900 group-hover:text-orange-700 transition-colors">
+              <span className="font-semibold text-lg text-slate-900 group-hover:text-emerald-600 transition-colors">
                 {config.appName}
               </span>
             </Link>
@@ -60,7 +71,7 @@ const Header = () => {
           <div className="flex lg:hidden">
             <button
               type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 hover:text-gray-900"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700 hover:text-slate-900"
               onClick={() => setIsOpen(true)}
             >
               <span className="sr-only">Open main menu</span>
@@ -83,7 +94,7 @@ const Header = () => {
               <Link
                 href={link.href}
                 key={link.href}
-                className="text-gray-700 hover:text-orange-700 font-medium transition-colors"
+                className="text-slate-600 hover:text-slate-900 text-sm font-medium transition-colors"
                 title={link.label}
               >
                 {link.label}
@@ -96,14 +107,14 @@ const Header = () => {
             {status === "authenticated" ? (
               <>
                 <ButtonSignin
-                  extraStyle="px-6 py-2.5 bg-orange-700 hover:bg-orange-800 text-white rounded-lg font-semibold transition-all shadow-md"
+                  extraStyle="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-full text-sm font-medium transition-all"
                   text="Get started"
                   authenticatedText="Dashboard"
                 />
                 <ButtonAccount />
               </>
             ) : (
-              <ButtonSignin extraStyle="px-6 py-2.5 bg-orange-700 hover:bg-orange-800 text-white rounded-lg font-semibold transition-all shadow-md" />
+              <ButtonSignin extraStyle="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-full text-sm font-medium transition-all" />
             )}
           </div>
         </nav>
@@ -114,7 +125,7 @@ const Header = () => {
         <>
           {/* Backdrop overlay */}
           <div 
-            className="fixed inset-0 bg-black/50 z-[9998] lg:hidden"
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[9998] lg:hidden"
             onClick={() => setIsOpen(false)}
           />
           
@@ -127,7 +138,7 @@ const Header = () => {
             }}
           >
             {/* Logo on mobile */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
               <Link className="flex items-center gap-2 shrink-0" title={`${config.appName} homepage`} href="/" onClick={() => setIsOpen(false)}>
                 <Image
                   src={logo || "/placeholder.svg"}
@@ -138,11 +149,11 @@ const Header = () => {
                   width={32}
                   height={32}
                 />
-                <span className="font-bold text-xl text-gray-900">{config.appName}</span>
+                <span className="font-semibold text-lg text-slate-900">{config.appName}</span>
               </Link>
               <button
                 type="button"
-                className="-m-2.5 rounded-md p-2.5 text-gray-700 hover:text-gray-900"
+                className="-m-2.5 rounded-md p-2.5 text-slate-500 hover:text-slate-900"
                 onClick={() => setIsOpen(false)}
               >
                 <span className="sr-only">Close menu</span>
@@ -166,7 +177,7 @@ const Header = () => {
                   <Link
                     href={link.href}
                     key={link.href}
-                    className="text-gray-700 hover:text-orange-700 font-medium transition-colors text-lg w-full"
+                    className="text-slate-700 hover:text-slate-900 font-medium transition-colors text-lg w-full"
                     title={link.label}
                     onClick={() => setIsOpen(false)}
                   >
@@ -175,21 +186,21 @@ const Header = () => {
                 ))}
               </div>
               
-              <div className="border-t border-gray-200 my-6"></div>
+              <div className="border-t border-slate-100 my-6"></div>
 
               {/* CTA on mobile */}
               <div className="flex flex-col gap-3">
                 {status === "authenticated" ? (
                   <>
                     <ButtonSignin
-                      extraStyle="w-full px-6 py-3 bg-orange-700 hover:bg-orange-800 text-white rounded-lg font-semibold transition-all shadow-md"
+                      extraStyle="w-full px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-full font-medium transition-all"
                       text="Get started"
                       authenticatedText="Dashboard"
                     />
                     <ButtonAccount />
                   </>
                 ) : (
-                  <ButtonSignin extraStyle="w-full px-6 py-3 bg-orange-700 hover:bg-orange-800 text-white rounded-lg font-semibold transition-all shadow-md" />
+                  <ButtonSignin extraStyle="w-full px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-full font-medium transition-all" />
                 )}
               </div>
             </div>
