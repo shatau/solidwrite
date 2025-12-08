@@ -53,9 +53,9 @@ const HeaderDashboard = ({ refreshTrigger, onDataLoaded }) => {
 
   const getPlanBadgeColor = (plan) => {
     switch (plan.toLowerCase()) {
-      case 'basic': return 'bg-emerald-100 text-emerald-700';
-      case 'pro': return 'bg-emerald-600 text-white';
-      case 'ultra': return 'bg-emerald-800 text-white';
+      case 'basic': return 'bg-blue-100 text-blue-700';
+      case 'pro': return 'bg-blue-600 text-white';
+      case 'ultra': return 'bg-blue-800 text-white';
       default: return 'bg-gray-200 text-gray-700';
     }
   };
@@ -106,14 +106,14 @@ const HeaderDashboard = ({ refreshTrigger, onDataLoaded }) => {
               width={32}
               height={32}
             />
-            <span className="font-bold text-xl text-gray-900 group-hover:text-emerald-700 transition-colors">{config.appName}</span>
+            <span className="font-bold text-xl text-gray-900 group-hover:text-blue-700 transition-colors">{config.appName}</span>
           </Link>
 
           {/* Center - Credits Display */}
-          <div className="hidden md:flex items-center gap-3 bg-emerald-50 border border-emerald-200 px-6 py-2.5 rounded-full">
+          <div className="hidden md:flex items-center gap-3 bg-blue-50 border border-blue-200 px-6 py-2.5 rounded-full">
             <div className="flex items-center gap-2">
               <svg
-                className="w-5 h-5 text-emerald-600"
+                className="w-5 h-5 text-blue-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -128,7 +128,7 @@ const HeaderDashboard = ({ refreshTrigger, onDataLoaded }) => {
               <div>
                 <div className="text-sm font-semibold text-gray-900">
                   {loading ? (
-                    <span className="inline-block w-4 h-4 border-2 border-emerald-600 border-t-transparent rounded-full animate-spin"></span>
+                    <span className="inline-block w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></span>
                   ) : (
                     <>{credits?.toLocaleString() || '0'} credits</>
                   )}
@@ -151,7 +151,7 @@ const HeaderDashboard = ({ refreshTrigger, onDataLoaded }) => {
             {userPlan === 'free' && (
               <button
                 onClick={() => setShowPricingModal(true)}
-                className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold transition-all shadow-md text-sm flex items-center gap-2"
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-all shadow-md text-sm flex items-center gap-2"
               >
                 <svg
                   className="w-4 h-4"
@@ -173,7 +173,7 @@ const HeaderDashboard = ({ refreshTrigger, onDataLoaded }) => {
             {/* Profile Dropdown */}
             <div className="relative">
               <button
-                className="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-lg hover:bg-emerald-700 transition-colors"
+                className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg hover:bg-blue-700 transition-colors"
                 onClick={() => setShowProfileMenu(!showProfileMenu)}
               >
                 {session?.user?.name?.[0]?.toUpperCase() ||
@@ -191,7 +191,7 @@ const HeaderDashboard = ({ refreshTrigger, onDataLoaded }) => {
                     {/* User Info Section */}
                     <div className="p-4 border-b border-gray-200">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-lg">
+                        <div className="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">
                           {session?.user?.name?.[0]?.toUpperCase() ||
                             session?.user?.email?.[0]?.toUpperCase() ||
                             'U'}
@@ -235,7 +235,7 @@ const HeaderDashboard = ({ refreshTrigger, onDataLoaded }) => {
                         <span className="text-sm text-gray-600">Credits</span>
                         <span className="font-semibold text-sm text-gray-900">
                           {loading ? (
-                            <span className="inline-block w-4 h-4 border-2 border-emerald-600 border-t-transparent rounded-full animate-spin"></span>
+                            <span className="inline-block w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></span>
                           ) : (
                             credits?.toLocaleString() || '0'
                           )}
@@ -348,11 +348,11 @@ const HeaderDashboard = ({ refreshTrigger, onDataLoaded }) => {
         </nav>
 
         {/* Mobile Credits Display */}
-        <div className="md:hidden border-t border-gray-200 px-6 py-3 bg-emerald-50">
+        <div className="md:hidden border-t border-gray-200 px-6 py-3 bg-blue-50">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <svg
-                className="w-4 h-4 text-emerald-600"
+                className="w-4 h-4 text-blue-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -366,7 +366,7 @@ const HeaderDashboard = ({ refreshTrigger, onDataLoaded }) => {
               </svg>
               <span className="text-sm font-semibold text-gray-900">
                 {loading ? (
-                  <span className="inline-block w-4 h-4 border-2 border-emerald-600 border-t-transparent rounded-full animate-spin"></span>
+                  <span className="inline-block w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></span>
                 ) : (
                   <>{credits?.toLocaleString() || '0'} credits</>
                 )}

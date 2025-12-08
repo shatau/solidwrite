@@ -22,7 +22,7 @@ const Footer = () => {
                 width={32}
                 height={32}
               />
-              <span className="text-xl font-semibold text-slate-900 group-hover:text-emerald-600 transition-colors">
+              <span className="text-xl font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
                 {config.appName}
               </span>
             </Link>

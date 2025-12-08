@@ -81,15 +81,15 @@ const Hero = () => {
 
         <div className="relative max-w-6xl mx-auto flex flex-col items-center text-center gap-8">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-700 text-sm font-medium">
-            <span className="w-2 h-2 rounded-full text-emerald-500 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-sm font-medium">
+            <span className="w-2 h-2 rounded-full text-blue-500 animate-pulse" />
             Trusted by 10,000+ writers
           </div>
 
           {/* Headline */}
           <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight text-slate-900">
             Make AI Text Sound{" "}
-            <span className="text-emerald-600">Human</span>
+            <span className="text-blue-600">Human</span>
           </h1>
           <p className="text-lg lg:text-xl text-slate-600 max-w-2xl">
             Transform AI-generated content into natural, human-like writing that bypasses AI detectors.
@@ -148,7 +148,7 @@ const Hero = () => {
                   <button
                     onClick={handleHumanize}
                     disabled={!text.trim() || wordCount > maxWords}
-                    className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all flex items-center gap-2"
+                    className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all flex items-center gap-2"
                   >
                     <Sparkles className="w-4 h-4" />
                     Humanize
@@ -172,15 +172,15 @@ const Hero = () => {
           {/* Trust Indicators */}
           <div className="flex flex-wrap justify-center gap-6 mt-8 text-sm text-slate-500">
             <div className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-emerald-500" />
+              <Check className="w-4 h-4 text-blue-500" />
               <span>Bypass AI Detectors</span>
             </div>
             <div className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-emerald-500" />
+              <Check className="w-4 h-4 text-blue-500" />
               <span>Natural Writing Style</span>
             </div>
             <div className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-emerald-500" />
+              <Check className="w-4 h-4 text-blue-500" />
               <span>Instant Results</span>
             </div>
           </div>
@@ -198,7 +198,7 @@ const Hero = () => {
         {/* Headline */}
         <div className="text-center mb-12">
           <h1 className="text-4xl lg:text-6xl font-extrabold leading-tight mb-4 text-slate-900">
-            Make AI Text Sound <span className="text-emerald-600">Human</span>
+            Make AI Text Sound <span className="text-blue-600">Human</span>
           </h1>
           <p className="text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto">
             Transform AI-generated content into natural, human-like writing that bypasses AI detectors.
@@ -253,7 +253,7 @@ const Hero = () => {
                   <button
                     onClick={handleHumanize}
                     disabled={!text.trim() || wordCount > maxWords}
-                    className="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all flex items-center gap-2"
+                    className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all flex items-center gap-2"
                   >
                     <Sparkles className="w-4 h-4" />
                     Humanize
@@ -284,7 +284,7 @@ const Hero = () => {
               {/* Loading State */}
               {!detectionResult && !error && isDetecting && (
                 <div className="flex flex-col items-center justify-center min-h-[400px]">
-                  <div className="w-12 h-12 rounded-full border-2 border-slate-200 border-t-emerald-500 animate-spin mb-4"></div>
+                  <div className="w-12 h-12 rounded-full border-2 border-slate-200 border-t-blue-500 animate-spin mb-4"></div>
                   <p className="text-slate-500">Analyzing text...</p>
                 </div>
               )}
@@ -305,7 +305,7 @@ const Hero = () => {
                   {/* Visual Progress Bar */}
                   <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
                     <div
-                      className="h-2.5 bg-gradient-to-r from-red-500 via-amber-500 to-emerald-500 transition-all duration-500 rounded-full"
+                      className="h-2.5 bg-gradient-to-r from-red-500 via-amber-500 to-blue-500 transition-all duration-500 rounded-full"
                       style={{ width: `${Math.round(100 - detectionResult.score)}%` }}
                     ></div>
                   </div>
@@ -320,7 +320,7 @@ const Hero = () => {
 
                           if (humanScore >= 60) {
                             icon = '✅';
-                            colorClass = 'text-emerald-600';
+                            colorClass = 'text-blue-600';
                           } else if (humanScore < 40) {
                             icon = '⛔';
                             colorClass = 'text-red-500';
@@ -343,7 +343,7 @@ const Hero = () => {
 
                             if (humanScore >= 60) {
                               icon = '✅';
-                              colorClass = 'text-emerald-600';
+                              colorClass = 'text-blue-600';
                             } else if (humanScore < 40) {
                               icon = '⛔';
                               colorClass = 'text-red-500';
@@ -377,15 +377,15 @@ const Hero = () => {
         {/* Trust Indicators */}
         <div className="flex flex-wrap justify-center gap-6 mt-12 text-sm text-slate-500">
           <div className="flex items-center gap-2">
-            <Check className="w-4 h-4 text-emerald-500" />
+            <Check className="w-4 h-4 text-blue-500" />
             <span>Bypass AI Detectors</span>
           </div>
           <div className="flex items-center gap-2">
-            <Check className="w-4 h-4 text-emerald-500" />
+            <Check className="w-4 h-4 text-blue-500" />
             <span>Natural Writing Style</span>
           </div>
           <div className="flex items-center gap-2">
-            <Check className="w-4 h-4 text-emerald-500" />
+            <Check className="w-4 h-4 text-blue-500" />
             <span>Instant Results</span>
           </div>
         </div>

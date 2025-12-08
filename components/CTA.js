@@ -3,7 +3,7 @@ import { Sparkles, ArrowRight } from "lucide-react"
 
 const CTA = () => {
   return (
-    <section className="relative bg-gradient-to-br from-emerald-700 via-emerald-600 to-emerald-800 py-20 lg:py-32 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-blue-700 via-blue-600 to-blue-800 py-20 lg:py-32 overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
@@ -29,7 +29,7 @@ const CTA = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
           <button
             onClick={() => (window.location.href = "/dashboard")}
-            className="group px-8 py-4 bg-white text-emerald-700 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all hover:scale-105 flex items-center gap-2"
+            className="group px-8 py-4 bg-white text-blue-700 rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all hover:scale-105 flex items-center gap-2"
           >
             Get Started Free
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

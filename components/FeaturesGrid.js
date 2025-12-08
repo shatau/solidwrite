@@ -40,13 +40,13 @@ const FeaturesGrid = () => {
     <section className="relative bg-white px-6 py-20 lg:py-28 overflow-hidden">
       {/* Background accent */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-emerald-50 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-50 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="inline-block text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-3">
+          <span className="inline-block text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">
             Built on Science
           </span>
           <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Why Writers Trust SolidWrite</h2>
@@ -64,7 +64,7 @@ const FeaturesGrid = () => {
                 key={feature.title}
                 className="group flex flex-col items-start p-6 bg-slate-50 rounded-xl border border-slate-100 hover:bg-white hover:border-slate-200 hover:shadow-md transition-all duration-300"
               >
-                <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-emerald-100 text-emerald-600 mb-5 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                <div className="flex items-center justify-center w-11 h-11 rounded-xl bg-blue-100 text-blue-600 mb-5 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                   <Icon className="w-5 h-5" />
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">{feature.title}</h3>

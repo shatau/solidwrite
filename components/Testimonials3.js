@@ -54,7 +54,7 @@ const Testimonial = ({ i }) => {
                 height={40}
               />
             ) : (
-              <div className="w-10 h-10 rounded-full flex items-center justify-center bg-emerald-100 text-emerald-600 font-semibold text-sm">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center bg-blue-100 text-blue-600 font-semibold text-sm">
                 {testimonial.name.charAt(0)}
               </div>
             )}
@@ -75,7 +75,7 @@ const Testimonials3 = () => {
       <div className=" mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="inline-block text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-3">
+          <span className="inline-block text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">
             Testimonials
           </span>
           <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Trusted by thousands</h2>

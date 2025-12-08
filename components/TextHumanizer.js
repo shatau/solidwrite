@@ -165,8 +165,8 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
     // Single box view (initial state)
     if (!showResults) {
         return (
-<div className="min-h-screen bg-[#f2f3f5] w-full mx-auto max-w-4xl px-4 py-10">
-{/* Header */}
+            <div className="w-full mx-auto max-w-4xl">
+                {/* Header */}
                 <div className="text-center mb-12">
                     <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                         Solid Write converts your AI-generated content into fully humanized, undetectable writing—ensuring it passes every AI detection tool
@@ -227,7 +227,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                                 <button
                                     onClick={handleHumanize}
                                     disabled={!inputText.trim() || isHumanizing || wordCount > maxWords}
-                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all"
+                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all"
                                 >
                                     {isHumanizing ? (
                                         <>
@@ -251,13 +251,13 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
 
     // Two box view (results state)
     return (
-<div className="min-h-screen bg-[#f2f3f5] w-full mx-auto px-4 py-10">
-{/* Header with CTA */}
+        <div className="w-full mx-auto">
+            {/* Header with CTA */}
             <div className="text-center mb-8">
                 <p className="text-base text-slate-600 max-w-2xl mx-auto mb-6">
                     Solid Write converts your AI-generated content into fully humanized, undetectable writing—ensuring it passes every AI detection tool
                 </p>
-                <button className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-medium transition-all">
+                <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-all">
                     Get more words
                 </button>
             </div>
@@ -313,7 +313,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                                 <button
                                     onClick={handleHumanize}
                                     disabled={!inputText.trim() || isHumanizing || wordCount > maxWords}
-                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all"
+                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all"
                                 >
                                     {isHumanizing ? (
                                         <>
@@ -344,7 +344,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                                 >
                                     {copied ? (
                                         <>
-                                            <Check className="w-4 h-4 text-emerald-500" />
+                                            <Check className="w-4 h-4 text-blue-500" />
                                             Copied!
                                         </>
                                     ) : (
@@ -368,7 +368,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
 
                                 <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
                                     <div
-                                        className="h-2.5 bg-gradient-to-r from-red-500 via-amber-500 to-emerald-500 transition-all duration-500 rounded-full"
+                                        className="h-2.5 bg-gradient-to-r from-red-500 via-amber-500 to-blue-500 transition-all duration-500 rounded-full"
                                         style={{ width: `${detectionResult.displayHumanScore}%` }}
                                     ></div>
                                 </div>
@@ -382,7 +382,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
 
                                             if (humanScore >= 60) {
                                                 icon = '✅';
-                                                colorClass = 'text-emerald-600';
+                                                colorClass = 'text-blue-600';
                                             } else if (humanScore < 40) {
                                                 icon = '⛔';
                                                 colorClass = 'text-red-500';
@@ -406,7 +406,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
 
                                                 if (humanScore >= 60) {
                                                     icon = '✅';
-                                                    colorClass = 'text-emerald-600';
+                                                    colorClass = 'text-blue-600';
                                                 } else if (humanScore < 40) {
                                                     icon = '⛔';
                                                     colorClass = 'text-red-500';
@@ -435,7 +435,7 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                             <div className="flex flex-col items-center justify-center h-96">
                                 {isDetecting || isHumanizing ? (
                                     <>
-                                        <div className="w-12 h-12 rounded-full border-2 border-slate-200 border-t-emerald-500 animate-spin mb-4"></div>
+                                        <div className="w-12 h-12 rounded-full border-2 border-slate-200 border-t-blue-500 animate-spin mb-4"></div>
                                         <p className="text-slate-500">
                                             {isDetecting ? 'Analyzing text...' : 'Humanizing text...'}
                                         </p>

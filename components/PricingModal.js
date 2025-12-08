@@ -176,7 +176,7 @@ const PricingModal = ({ isOpen, onClose, currentPlan = 'free', currentBillingInt
               >
                 Annual
                 <span className={`text-xs px-2 py-0.5 rounded-full ${
-                  billingCycle === 'annual' ? 'bg-emerald-500 text-white' : 'bg-emerald-100 text-emerald-700'
+                  billingCycle === 'annual' ? 'bg-blue-500 text-white' : 'bg-blue-100 text-blue-700'
                 }`}>
                   -50%
                 </span>
@@ -209,14 +209,14 @@ const PricingModal = ({ isOpen, onClose, currentPlan = 'free', currentBillingInt
                   key={plan.priceId}
                   className={`relative rounded-xl border p-5 transition-all ${
                     plan.isFeatured
-                      ? 'border-emerald-500 shadow-lg shadow-emerald-500/10'
+                      ? 'border-blue-500 shadow-lg shadow-blue-500/10'
                       : 'border-slate-200 hover:border-slate-300'
                   } ${isCurrentPlan ? 'opacity-60' : ''}`}
                 >
                   {/* Badges */}
                   <div className="flex flex-wrap gap-2 mb-3">
                     {plan.isFeatured && (
-                      <span className="text-xs px-2 py-0.5 bg-emerald-500 text-white rounded-full font-medium">
+                      <span className="text-xs px-2 py-0.5 bg-blue-500 text-white rounded-full font-medium">
                         Popular
                       </span>
                     )}
@@ -264,7 +264,7 @@ const PricingModal = ({ isOpen, onClose, currentPlan = 'free', currentBillingInt
                   <ul className="space-y-2 mb-5">
                     {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
-                        <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -272,9 +272,9 @@ const PricingModal = ({ isOpen, onClose, currentPlan = 'free', currentBillingInt
 
                   {/* Upgrade/Downgrade Info */}
                   {!isCurrentPlan && comparison === 'upgrade' && currentPlan !== 'free' && (
-                    <div className="flex items-center gap-2 p-2 bg-emerald-50 border border-emerald-100 rounded-lg mb-3">
-                      <Check className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-                      <span className="text-xs text-emerald-700">Instant upgrade + keep credits</span>
+                    <div className="flex items-center gap-2 p-2 bg-blue-50 border border-blue-100 rounded-lg mb-3">
+                      <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                      <span className="text-xs text-blue-700">Instant upgrade + keep credits</span>
                     </div>
                   )}
 

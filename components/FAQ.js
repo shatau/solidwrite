@@ -94,12 +94,12 @@ const Item = ({ item }) => {
         }}
         aria-expanded={isOpen}
       >
-        <span className="flex-1 text-base font-medium text-slate-900 group-hover:text-emerald-600 transition-colors">
+        <span className="flex-1 text-base font-medium text-slate-900 group-hover:text-blue-600 transition-colors">
           {item?.question}
         </span>
         <div
           className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all ${
-            isOpen ? "bg-emerald-600 text-white" : "bg-slate-100 text-slate-500"
+            isOpen ? "bg-blue-600 text-white" : "bg-slate-100 text-slate-500"
           }`}
         >
           {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
@@ -123,7 +123,7 @@ const FAQ = () => {
       <div className="max-w-3xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="inline-block text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-3">
+          <span className="inline-block text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">
             FAQ
           </span>
 
@@ -141,12 +141,12 @@ const FAQ = () => {
 
         {/* Contact Section */}
         {/* <div className="mt-16 text-center">
-          <div className="inline-flex flex-col items-center gap-4 bg-gradient-to-br from-amber-50 to-emerald-50 p-8 rounded-2xl border border-emerald-200">
+          <div className="inline-flex flex-col items-center gap-4 bg-gradient-to-br from-amber-50 to-blue-50 p-8 rounded-2xl border border-blue-200">
             <h3 className="text-xl font-bold text-gray-900">Still have questions?</h3>
             <p className="text-gray-600">Our support team is here to help you get the most out of SolidWrite.</p>
             <a
               href="mailto:support@SolidWrite.com"
-              className="px-6 py-3 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg font-semibold transition-all shadow-lg"
+              className="px-6 py-3 bg-blue-700 hover:bg-blue-800 text-white rounded-lg font-semibold transition-all shadow-lg"
             >
               Contact Support
             </a>

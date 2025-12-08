@@ -13,7 +13,7 @@ const steps = [
     type: "image",
     path: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Paste text illustration",
-    bgColor: "bg-emerald-50",
+    bgColor: "bg-blue-50",
   },
   {
     number: "2",
@@ -23,7 +23,7 @@ const steps = [
     type: "image",
     path: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "AI score check illustration",
-    bgColor: "bg-emerald-50",
+    bgColor: "bg-blue-50",
   },
   {
     number: "3",
@@ -33,7 +33,7 @@ const steps = [
     type: "image",
     path: "https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     alt: "Humanize text illustration",
-    bgColor: "bg-emerald-50",
+    bgColor: "bg-blue-50",
   },
 ]
 
@@ -50,14 +50,14 @@ const StepCard = ({ step, index, isActive, onClick }) => {
       <div className="flex items-start gap-6">
         <div
           className={`flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300 ${
-            isActive ? "bg-emerald-600 shadow-lg shadow-emerald-500/30" : "bg-slate-100"
+            isActive ? "bg-blue-600 shadow-lg shadow-blue-500/30" : "bg-slate-100"
           }`}
         >
           <Icon className={`w-8 h-8 ${isActive ? "text-white" : "text-slate-500"}`} />
         </div>
         <div className="flex-1 pt-2">
           <div className="flex items-center gap-3 mb-3">
-            <span className={`text-sm font-bold ${isActive ? "text-emerald-600" : "text-slate-400"}`}>STEP {number}</span>
+            <span className={`text-sm font-bold ${isActive ? "text-blue-600" : "text-slate-400"}`}>STEP {number}</span>
           </div>
           <h3
             className={`text-2xl font-bold mb-3 transition-colors duration-300 ${
@@ -101,7 +101,7 @@ const FeaturesAccordion = () => {
       <div className=" mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="inline-block text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-3">
+          <span className="inline-block text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">
             How It Works
           </span>
 
@@ -117,7 +117,7 @@ const FeaturesAccordion = () => {
           {steps.map((step, index) => (
             <div key={step.number} className="bg-white rounded-2xl p-8 border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all duration-300">
               <div className="mb-6">
-                <span className="inline-flex items-center justify-center w-10 h-10 bg-emerald-600 text-white text-sm font-bold rounded-xl">
+                <span className="inline-flex items-center justify-center w-10 h-10 bg-blue-600 text-white text-sm font-bold rounded-xl">
                   {step.number}
                 </span>
               </div>
@@ -130,11 +130,11 @@ const FeaturesAccordion = () => {
 
         {/* Media display */}
         {/* <div className="mt-20 text-center">
-          <div className="inline-flex flex-col items-center gap-4 bg-gradient-to-br from-amber-50 to-emerald-50 p-8 rounded-2xl border border-emerald-200">
+          <div className="inline-flex flex-col items-center gap-4 bg-gradient-to-br from-amber-50 to-blue-50 p-8 rounded-2xl border border-blue-200">
             <p className="text-lg text-gray-700 font-medium">Ready to transform your content?</p>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="px-8 py-3 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg font-semibold transition-all shadow-lg"
+              className="px-8 py-3 bg-blue-700 hover:bg-blue-800 text-white rounded-lg font-semibold transition-all shadow-lg"
             >
               Try It Free Now
             </button>

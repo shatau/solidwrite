@@ -46,7 +46,7 @@ const Header = () => {
       <header className={`w-full fixed top-0 z-40 transition-all duration-300 ${
         scrolled 
           ? "bg-white/90 backdrop-blur-xl shadow-sm border-b border-slate-200/50" 
-          : "bg-transparent"
+          : "bg-white"
       }`}>
         <nav className="container flex items-center justify-between px-6 py-4 mx-auto " aria-label="Global">
           {/* Logo */}
@@ -61,7 +61,7 @@ const Header = () => {
                 width={32}
                 height={32}
               />
-              <span className="font-semibold text-lg text-slate-900 group-hover:text-emerald-600 transition-colors">
+              <span className="font-semibold text-lg text-slate-900 group-hover:text-blue-600 transition-colors">
                 {config.appName}
               </span>
             </Link>

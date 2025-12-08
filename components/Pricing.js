@@ -140,7 +140,7 @@ const Pricing = () => {
       <div className=" mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-6">
-          <span className="inline-block text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-3">
+          <span className="inline-block text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">
             Pricing
           </span>
 
@@ -166,7 +166,7 @@ const Pricing = () => {
             >
               Annual
               <span className={`text-xs px-2 py-0.5 rounded-full ${
-                billingCycle === "annual" ? "bg-emerald-500 text-white" : "bg-emerald-100 text-emerald-700"
+                billingCycle === "annual" ? "bg-blue-500 text-white" : "bg-blue-100 text-blue-700"
               }`}>
                 -50%
               </span>
@@ -183,13 +183,13 @@ const Pricing = () => {
                 key={plan.priceId}
                 className={`relative rounded-2xl border transition-all ${
                   plan.isFeatured
-                    ? "border-emerald-500 bg-white shadow-xl shadow-emerald-500/10 scale-[1.02]"
+                    ? "border-blue-500 bg-white shadow-xl shadow-blue-500/10 scale-[1.02]"
                     : "border-slate-200 bg-white hover:shadow-lg hover:border-slate-300"
                 }`}
               >
                 {plan.isFeatured && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="px-4 py-1 bg-emerald-500 text-white text-xs font-bold rounded-full shadow-lg">
+                    <span className="px-4 py-1 bg-blue-500 text-white text-xs font-bold rounded-full shadow-lg">
                       MOST POPULAR
                     </span>
                   </div>
@@ -200,7 +200,7 @@ const Pricing = () => {
                   <div className="flex items-center gap-3 mb-4">
                     <div
                       className={`w-11 h-11 rounded-xl flex items-center justify-center ${
-                        plan.isFeatured ? "bg-emerald-600" : "bg-slate-100"
+                        plan.isFeatured ? "bg-blue-600" : "bg-slate-100"
                       }`}
                     >
                       <IconComponent className={`w-5 h-5 ${plan.isFeatured ? "text-white" : "text-slate-600"}`} />
@@ -217,7 +217,7 @@ const Pricing = () => {
                     {plan.priceAnchor && (
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-sm text-slate-400 line-through">${plan.priceAnchor}</span>
-                        <span className="text-xs font-semibold text-emerald-600">50% off</span>
+                        <span className="text-xs font-semibold text-blue-600">50% off</span>
                       </div>
                     )}
                     <div className="flex items-end gap-1">
@@ -235,7 +235,7 @@ const Pricing = () => {
                   <ul className="mt-6 space-y-3">
                     {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-2.5">
-                        <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
                         <span className="text-slate-600 text-sm">{feature}</span>
                       </li>
                     ))}
