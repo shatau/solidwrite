@@ -31,8 +31,8 @@ export default function DashboardPage() {
 
   if (status === 'loading') {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <span className="loading loading-spinner loading-lg"></span>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-50 via-white to-slate-50">
+        <div className="w-10 h-10 rounded-full border-2 border-slate-200 border-t-emerald-500 animate-spin"></div>
       </div>
     );
   }
@@ -44,12 +44,17 @@ export default function DashboardPage() {
   return (
     <>
       <HeaderDashboard onDataLoaded={handleDataLoaded} />
-      <main className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-emerald-50 py-12 px-4">
-        <TextHumanizer 
-          initialCredits={userData.credits}
-          userPlan={userData.plan}
-          onCreditsUpdate={handleCreditsUpdate}
-        />
+      <main className="relative min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 py-12 px-4 overflow-hidden">
+        {/* Background pattern matching Hero */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
+        
+        <div className="relative max-w-7xl mx-auto">
+          <TextHumanizer 
+            initialCredits={userData.credits}
+            userPlan={userData.plan}
+            onCreditsUpdate={handleCreditsUpdate}
+          />
+        </div>
       </main>
     </>
   );
