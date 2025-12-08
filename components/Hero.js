@@ -95,6 +95,14 @@ const Hero = () => {
             Transform AI-generated content into natural, human-like writing that bypasses AI detectors.
           </p>
 
+          <button
+  onClick={() => (window.location.href = "/dashboard")}
+  className="mt-4 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-lg font-semibold transition-all shadow-md"
+>
+  Try for free
+</button>
+
+
           {/* Single Input Card */}
           <div className="w-full mt-6">
             <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200 overflow-hidden">
