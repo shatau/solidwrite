@@ -11,7 +11,7 @@ const PricingModal = ({ isOpen, onClose, currentPlan = 'free', currentBillingInt
       {
         name: "Basic",
         description: "Best for students who need basic humanization features",
-        priceId: process.env.NODE_ENV === "development" ? "price_1SXkK4GubYQbBbhWJriHIpbR" : "price_basic_monthly_prod",
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkK4GubYQbBbhWJriHIpbR" : "price_1SbiOkKBnTv7JXWROJag4V1o",
         price: 5.99,
         credits: 5000,
         planKey: 'basic',
@@ -25,7 +25,7 @@ const PricingModal = ({ isOpen, onClose, currentPlan = 'free', currentBillingInt
       {
         name: "Pro",
         description: "Perfect for professional writing",
-        priceId: process.env.NODE_ENV === "development" ? "price_1SXkKUGubYQbBbhWwvqkPTzh" : "price_pro_monthly_prod",
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkKUGubYQbBbhWwvqkPTzh" : "price_1SbiPIKBnTv7JXWRxPpg1isa",
         price: 19.99,
         credits: 15000,
         planKey: 'pro',
@@ -40,7 +40,7 @@ const PricingModal = ({ isOpen, onClose, currentPlan = 'free', currentBillingInt
       {
         name: "Ultra",
         description: "For blogs and long-form writing",
-        priceId: process.env.NODE_ENV === "development" ? "price_1SXkKsGubYQbBbhW7Tp5A5Cp" : "price_ultra_monthly_prod",
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkKsGubYQbBbhW7Tp5A5Cp" : "price_1SbiPjKBnTv7JXWRMbCJ7Fqp",
         price: 39.99,
         credits: 30000,
         planKey: 'ultra',
@@ -57,7 +57,7 @@ const PricingModal = ({ isOpen, onClose, currentPlan = 'free', currentBillingInt
       {
         name: "Basic",
         description: "Best for students who need basic humanization features",
-        priceId: process.env.NODE_ENV === "development" ? "price_1SXkM5GubYQbBbhWSVzXWKyM" : "price_basic_annual_prod",
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkM5GubYQbBbhWSVzXWKyM" : "price_1SbiQ7KBnTv7JXWRruqVX3Vx",
         price: 2.99,
         priceAnchor: 5.99,
         credits: 5000,
@@ -72,7 +72,7 @@ const PricingModal = ({ isOpen, onClose, currentPlan = 'free', currentBillingInt
       {
         name: "Pro",
         description: "Perfect for professional writing",
-        priceId: process.env.NODE_ENV === "development" ? "price_1SXkMwGubYQbBbhWPIHRI7ys" : "price_pro_annual_prod",
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkMwGubYQbBbhWPIHRI7ys" : "price_1SbiQwKBnTv7JXWRzGbPHxQL",
         price: 9.99,
         priceAnchor: 19.99,
         credits: 15000,
@@ -88,7 +88,7 @@ const PricingModal = ({ isOpen, onClose, currentPlan = 'free', currentBillingInt
       {
         name: "Ultra",
         description: "For blogs and long-form writing",
-        priceId: process.env.NODE_ENV === "development" ? "price_1SXkNYGubYQbBbhWfyMUCcg0" : "price_ultra_annual_prod",
+        priceId: process.env.NODE_ENV === "development" ? "price_1SXkNYGubYQbBbhWfyMUCcg0" : "price_1SbiRPKBnTv7JXWRPGSQKvtk",
         price: 19.99,
         priceAnchor: 39.99,
         credits: 30000,
