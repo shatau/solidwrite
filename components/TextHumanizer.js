@@ -165,8 +165,8 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
     // Single box view (initial state)
     if (!showResults) {
         return (
-            <div className="w-full mx-auto max-w-4xl">
-                {/* Header */}
+<div className="min-h-screen bg-[#f2f3f5] w-full mx-auto max-w-4xl px-4 py-10">
+{/* Header */}
                 <div className="text-center mb-12">
                     <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                         Solid Write converts your AI-generated content into fully humanized, undetectable writing—ensuring it passes every AI detection tool
@@ -251,8 +251,8 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
 
     // Two box view (results state)
     return (
-        <div className="w-full mx-auto">
-            {/* Header with CTA */}
+<div className="min-h-screen bg-[#f2f3f5] w-full mx-auto px-4 py-10">
+{/* Header with CTA */}
             <div className="text-center mb-8">
                 <p className="text-base text-slate-600 max-w-2xl mx-auto mb-6">
                     Solid Write converts your AI-generated content into fully humanized, undetectable writing—ensuring it passes every AI detection tool

@@ -75,8 +75,8 @@ const Hero = () => {
   // Single column view (no results)
   if (!showResults) {
     return (
-      <section className="relative min-h-screen bg-gradient-to-b from-slate-50 via-white to-slate-50 px-6 py-24 lg:py-32 overflow-hidden">
-        {/* Subtle background pattern */}
+<section className="relative min-h-screen bg-[#f2f3f5] px-6 py-24 lg:py-32 overflow-hidden">
+{/* Subtle background pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
 
         <div className="relative max-w-6xl mx-auto flex flex-col items-center text-center gap-8">
@@ -191,8 +191,8 @@ const Hero = () => {
 
   // Two column layout with results
   return (
-    <section className="relative bg-gradient-to-b from-slate-50 via-white to-slate-50 px-6 py-24 lg:py-28 overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
+<section className="relative bg-[#f2f3f5] px-6 py-24 lg:py-28 overflow-hidden">
+<div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
 
       <div className="relative mx-auto">
         {/* Headline */}
