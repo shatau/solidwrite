@@ -86,10 +86,10 @@ const Hero = () => {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
       {/* Gradient orbs */}
-<div className="absolute top-0 left-0 w-[600px] h-[800px] bg-gradient-to-br from-blue-200/40 to-purple-200/40 rounded-full blur-3xl" />
-<div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-gradient-to-br from-purple-200/50 to-blue-100/50 rounded-full blur-3xl" />
+<div className="absolute top-0 left-0 w-[600px] h-[800px] bg-gradient-to-br from-blue-200/30 to-purple-200/30 rounded-full blur-3xl" />
+<div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-gradient-to-br from-purple-200/40 to-blue-100/40 rounded-full blur-3xl" />
 
-        <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-20 lg:pt-20 lg:pb-28">
+        <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-20 lg:pt-20 lg:pb-28">
           <div className="flex flex-col items-center text-center">
             {/* Trust badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-transparent border  border-blue-200">
@@ -249,17 +249,25 @@ const Hero = () => {
   return (
    <section className="relative overflow-hidden bg-[#F5F5F5] pt-28 pb-20">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-gradient-to-br from-blue-200/60 to-purple-200/60 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-gradient-to-br from-blue-200/40 to-purple-200/40 rounded-full blur-3xl" />
 
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Headline */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900">
-            Make AI Text Sound <span className="text-blue-600">Human</span>
-          </h1>
-          <p className="mt-4 text-lg text-gray-600 max-w-xl mx-auto">
-            Transform AI-generated content into natural, authentic writing.
-          </p>
+        <h1 className="text-5xl sm:text-6xl lg:text-6xl mx-auto font-extrabold tracking-tight text-gray-900 max-w-5xl leading-[1.1]">
+              Make AI Text Sound
+              <span className="relative mx-3">
+                <span className="relative z-10 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                  Human
+                </span>
+                <svg className="absolute -bottom-2 left-0 w-full h-3 text-blue-200" viewBox="0 0 200 12" preserveAspectRatio="none">
+                  <path d="M0,8 Q50,0 100,8 T200,8" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+                </svg>
+              </span>
+            </h1>
+            <p className="mt-8 text-lg text-gray-600 mx-auto max-w-2xl leading-relaxed">
+              Transform AI-generated content into natural, authentic writing that bypasses all major AI detectors — instantly.
+            </p>
         </div>
 
         {/* Two Column Grid */}
