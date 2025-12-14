@@ -31,8 +31,8 @@ export default function DashboardPage() {
 
   if (status === 'loading') {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-50 via-white to-slate-50">
-        <div className="w-10 h-10 rounded-full border-2 border-slate-200 border-t-blue-500 animate-spin"></div>
+      <div className="min-h-screen flex items-center justify-center bg-[#F5F5F5]">
+        <div className="w-12 h-12 rounded-full border-2 border-gray-200 border-t-blue-500 animate-spin"></div>
       </div>
     );
   }
@@ -44,9 +44,13 @@ export default function DashboardPage() {
   return (
     <>
       <HeaderDashboard onDataLoaded={handleDataLoaded} />
-      <main className="relative min-h-screen bg-[#f2f3f5] py-12 px-4 overflow-hidden">
-      {/* Background pattern matching Hero */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
+      <main className="relative min-h-screen bg-[#F5F5F5] py-16 px-4 overflow-hidden">
+        {/* Subtle grid pattern matching Hero */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        
+        {/* Gradient orbs matching Hero */}
+        <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-200/30 to-purple-200/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-gradient-to-br from-purple-200/40 to-blue-100/40 rounded-full blur-3xl" />
         
         <div className="relative max-w-7xl mx-auto">
           <TextHumanizer 
