@@ -130,6 +130,17 @@ export const authOptions = {
       }
       return session;
     },
+    async redirect({ url, baseUrl }) {
+      // Remove www from URLs for consistency
+      const normalizedBase = baseUrl.replace('://www.', '://');
+      
+      if (url.startsWith("/")) return `${normalizedBase}${url}`;
+      
+      const normalizedUrl = url.replace('://www.', '://');
+      if (normalizedUrl.startsWith(normalizedBase)) return normalizedUrl;
+      
+      return normalizedBase;
+    },
   },
 
   pages: {
