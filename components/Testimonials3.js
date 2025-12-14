@@ -53,16 +53,6 @@ const testimonials = [
 ]
 
 const TestimonialCard = ({ testimonial }) => {
-  const gradients = [
-    "from-blue-500 to-indigo-600",
-    "from-purple-500 to-pink-600",
-    "from-emerald-500 to-teal-600",
-    "from-amber-500 to-orange-600",
-    "from-rose-500 to-red-600",
-    "from-cyan-500 to-blue-600",
-  ]
-  const gradient = gradients[Math.floor(Math.random() * gradients.length)]
-
   return (
     <div className="group relative bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-500">
       {/* Quote icon */}
@@ -84,7 +74,7 @@ const TestimonialCard = ({ testimonial }) => {
 
       {/* Quote */}
       <blockquote className="text-gray-700 leading-relaxed mb-8">
-        "{testimonial.text}"
+        &quot;{testimonial.text}&quot;
       </blockquote>
 
       {/* Author */}
