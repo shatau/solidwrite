@@ -91,13 +91,13 @@ export const renderSchemaTags = () => {
           applicationCategory: "EducationalApplication",
           aggregateRating: {
             "@type": "AggregateRating",
-            ratingValue: "4.8",
-            ratingCount: "12",
+            ratingValue: "4.9",
+            ratingCount: "541",
           },
           offers: [
             {
               "@type": "Offer",
-              price: "9.00",
+              price: "4.99",
               priceCurrency: "USD",
             },
           ],

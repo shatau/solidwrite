@@ -15,7 +15,14 @@ export const viewport = {
 
 // This adds default SEO tags to all pages in our app.
 // You can override them in each page passing params to getSOTags() function.
-export const metadata = getSEOTags();
+export async function generateMetadata() {
+
+	return getSEOTags({
+	  title: "AI Humanizer by Solid Write: Bypass AI Detectors ",
+	  description: "Transform AI-generated text into natural, human-like content that bypasses AI detection.",
+	  canonicalUrlRelative: "http://localhost:3000"
+	});
+  }
 
 export default function RootLayout({ children }) {
 	return (
