@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Sparkles, FileText, Copy, Check, Clipboard, Loader2 } from 'lucide-react';
+import { Sparkles, FileText, Copy, Check, Clipboard, Loader2, Shield } from 'lucide-react';
 
 export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPlan = 'free' }) {
     const [inputText, setInputText] = useState('');
@@ -14,7 +14,6 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
 
     const wordCount = inputText.trim().split(/\s+/).filter(Boolean).length;
 
-    // Get word limit based on plan
     const getWordLimit = () => {
         const plan = (userPlan || 'free').toLowerCase();
         switch(plan) {
@@ -26,9 +25,6 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
     };
 
     const maxWords = getWordLimit();
-
-    useEffect(() => {
-    }, [userPlan, maxWords]);
 
     const handlePaste = async () => {
         try {
@@ -168,36 +164,38 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
             <div className="w-full mx-auto max-w-4xl">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                        Solid Write converts your AI-generated content into fully humanized, undetectable writing—ensuring it passes every AI detection tool
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                        Transform AI-generated content into natural, authentic writing that bypasses all major AI detectors — instantly.
                     </p>
                 </div>
 
                 {/* Single Input Card */}
-                <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200 overflow-hidden">
+                <div className="bg-white rounded-3xl shadow-2xl shadow-gray-200/60 border border-gray-300 overflow-hidden">
                     <div className="p-6 sm:p-8">
                         {/* Header */}
                         <div className="flex justify-between items-center mb-4">
-                            <h3 className="text-base font-semibold text-slate-900">Your Text</h3>
+                            <div className="flex items-center gap-3">
+                                <h3 className="text-sm font-medium text-gray-600">Your Text</h3>
+                            </div>
                             <button
                                 onClick={handlePaste}
-                                className="flex items-center gap-2 px-3 py-1.5 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
+                                className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
                             >
                                 <Clipboard className="w-4 h-4" />
-                                Paste Text
+                                Paste
                             </button>
                         </div>
 
                         <textarea
                             value={inputText}
                             onChange={(e) => setInputText(e.target.value)}
-                            placeholder="Paste your text here..."
-                            className="w-full h-80 resize-none text-slate-800 text-base focus:outline-none placeholder:text-slate-400 border border-slate-200 rounded-xl p-4"
+                            placeholder="Paste your AI-generated text here to check or humanize it..."
+                            className="w-full h-80 resize-none text-gray-800 text-base leading-relaxed focus:outline-none bg-white placeholder:text-gray-400"
                         />
 
-                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mt-4 pt-4 border-t border-slate-100">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mt-4 pt-4 border-t border-gray-100">
                             <div className="flex items-center gap-2">
-                                <span className={`text-sm font-medium ${wordCount > maxWords ? 'text-red-500' : 'text-slate-400'}`}>
+                                <span className={`text-sm font-medium ${wordCount > maxWords ? 'text-red-500' : 'text-gray-500'}`}>
                                     {wordCount.toLocaleString()} / {maxWords.toLocaleString()} words
                                 </span>
                                 {wordCount > maxWords && (
@@ -209,35 +207,34 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
                                 <button
                                     onClick={handleDetect}
                                     disabled={!inputText.trim() || isDetecting || wordCount > maxWords}
-                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 rounded-xl text-sm font-medium transition-all"
+                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed text-gray-700 rounded-xl text-sm font-semibold transition-all"
                                 >
                                     {isDetecting ? (
                                         <>
                                             <Loader2 className="w-4 h-4 animate-spin" />
-                                            <span className="hidden sm:inline">Checking...</span>
+                                            Analyzing...
                                         </>
                                     ) : (
                                         <>
-                                            <FileText className="w-4 h-4" />
-                                            <span>Check for AI</span>
+                                            <Shield className="w-4 h-4" />
+                                            Check AI Score
                                         </>
                                     )}
                                 </button>
-
                                 <button
                                     onClick={handleHumanize}
                                     disabled={!inputText.trim() || isHumanizing || wordCount > maxWords}
-                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all"
+                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-semibold transition-all shadow-sm shadow-blue-600/20"
                                 >
                                     {isHumanizing ? (
                                         <>
                                             <Loader2 className="w-4 h-4 animate-spin" />
-                                            <span className="hidden sm:inline">Processing...</span>
+                                            Processing...
                                         </>
                                     ) : (
                                         <>
                                             <Sparkles className="w-4 h-4" />
-                                            <span>Humanize</span>
+                                            Humanize
                                         </>
                                     )}
                                 </button>
@@ -254,210 +251,165 @@ export default function TextHumanizer({ onCreditsUpdate, initialCredits, userPla
         <div className="w-full mx-auto">
             {/* Header with CTA */}
             <div className="text-center mb-8">
-                <p className="text-base text-slate-600 max-w-2xl mx-auto mb-6">
-                    Solid Write converts your AI-generated content into fully humanized, undetectable writing—ensuring it passes every AI detection tool
+                <p className="text-base text-gray-600 max-w-2xl mx-auto mb-6 leading-relaxed">
+                    Transform AI-generated content into natural, authentic writing that bypasses all major AI detectors — instantly.
                 </p>
-                <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-all">
-                    Get more words
-                </button>
             </div>
 
             {/* Two Column Layout */}
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
                 {/* Left Column - Input */}
-                <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200 overflow-hidden">
-                    <div className="p-6">
-                        <div className="flex justify-between items-center mb-4">
-                            <h3 className="text-base font-semibold text-slate-900">Your Text</h3>
-                            <button
-                                onClick={handlePaste}
-                                className="flex items-center gap-2 px-3 py-1.5 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
-                            >
-                                <Clipboard className="w-4 h-4" />
-                            </button>
+                <div className="bg-white rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden">
+                    <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-gray-50/50">
+                        <span className="text-sm font-semibold text-gray-900">Your Text</span>
+                        <button
+                            onClick={handlePaste}
+                            className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+                        >
+                            <Clipboard className="w-4 h-4" />
+                        </button>
+                    </div>
+
+                    <textarea
+                        value={inputText}
+                        onChange={(e) => setInputText(e.target.value)}
+                        placeholder="Paste your text here..."
+                        className="w-full resize-none p-6 text-gray-800 text-base focus:outline-none min-h-[400px] placeholder:text-gray-400"
+                    />
+
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 px-6 py-4 border-t border-gray-100 bg-gray-50/50">
+                        <div className="flex items-center gap-2">
+                            <span className={`text-sm font-medium ${wordCount > maxWords ? 'text-red-500' : 'text-gray-500'}`}>
+                                {wordCount.toLocaleString()} / {maxWords.toLocaleString()} words
+                            </span>
+                            {wordCount > maxWords && (
+                                <span className="text-xs px-2 py-0.5 bg-red-100 text-red-600 rounded-full font-medium">Over limit</span>
+                            )}
                         </div>
-
-                        <textarea
-                            value={inputText}
-                            onChange={(e) => setInputText(e.target.value)}
-                            placeholder="Paste your text here..."
-                            className="w-full h-96 resize-none text-slate-800 text-base focus:outline-none placeholder:text-slate-400 border border-slate-200 rounded-xl p-4"
-                        />
-
-                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mt-4">
-                            <div className="flex items-center gap-2">
-                                <span className={`text-sm font-medium ${wordCount > maxWords ? 'text-red-500' : 'text-slate-400'}`}>
-                                    {wordCount.toLocaleString()} / {maxWords.toLocaleString()} words
-                                </span>
-                                {wordCount > maxWords && (
-                                    <span className="text-xs px-2 py-0.5 bg-red-100 text-red-600 rounded-full font-medium">Over limit</span>
-                                )}
-                            </div>
-
-                            <div className="flex gap-2 w-full sm:w-auto">
-                                <button
-                                    onClick={handleDetect}
-                                    disabled={!inputText.trim() || isDetecting || wordCount > maxWords}
-                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-50 disabled:cursor-not-allowed text-slate-700 rounded-xl text-sm font-medium transition-all"
-                                >
-                                    {isDetecting ? (
-                                        <>
-                                            <Loader2 className="w-4 h-4 animate-spin" />
-                                            <span className="hidden sm:inline">Checking...</span>
-                                        </>
-                                    ) : (
-                                        'Check for AI'
-                                    )}
-                                </button>
-
-                                <button
-                                    onClick={handleHumanize}
-                                    disabled={!inputText.trim() || isHumanizing || wordCount > maxWords}
-                                    className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-medium transition-all"
-                                >
-                                    {isHumanizing ? (
-                                        <>
-                                            <Loader2 className="w-4 h-4 animate-spin" />
-                                            <span className="hidden sm:inline">Processing...</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Sparkles className="w-4 h-4" />
-                                            Humanize
-                                        </>
-                                    )}
-                                </button>
-                            </div>
+                        <div className="flex gap-3 w-full sm:w-auto">
+                            <button
+                                onClick={handleDetect}
+                                disabled={!inputText.trim() || isDetecting || wordCount > maxWords}
+                                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed text-gray-700 rounded-xl text-sm font-semibold transition-all"
+                            >
+                                {isDetecting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Shield className="w-4 h-4" />}
+                                {isDetecting ? "Checking..." : "Check AI"}
+                            </button>
+                            <button
+                                onClick={handleHumanize}
+                                disabled={!inputText.trim() || isHumanizing || wordCount > maxWords}
+                                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-semibold transition-all"
+                            >
+                                <Sparkles className="w-4 h-4" />
+                                Humanize
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                {/* Right Column - Output */}
-                <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200 overflow-hidden">
-                    <div className="p-6">
-                        <div className="flex justify-between items-center mb-4">
-                            <h3 className="text-base font-semibold text-slate-900">Result</h3>
-                            {outputText && (
-                                <button
-                                    onClick={handleCopy}
-                                    className="flex items-center gap-2 px-3 py-1.5 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
-                                >
-                                    {copied ? (
-                                        <>
-                                            <Check className="w-4 h-4 text-blue-500" />
-                                            Copied!
-                                        </>
-                                    ) : (
-                                        <Copy className="w-4 h-4" />
-                                    )}
-                                </button>
-                            )}
-                        </div>
+                {/* Right Column - Results */}
+                <div className="bg-white rounded-2xl shadow-xl shadow-gray-200/50 border border-gray-100 overflow-hidden">
+                    <div className="px-6 py-4 border-b border-gray-100 bg-gray-50/50">
+                        <span className="text-sm font-semibold text-gray-900">Detection Results</span>
+                    </div>
+
+                    <div className="p-6 min-h-[400px] flex flex-col">
+                        {/* Loading */}
+                        {!detectionResult && !outputText && (isDetecting || isHumanizing) && (
+                            <div className="flex-1 flex flex-col items-center justify-center">
+                                <div className="w-16 h-16 rounded-full border-2 border-gray-100 border-t-blue-500 animate-spin mb-4" />
+                                <p className="text-gray-500 font-medium">
+                                    {isDetecting ? 'Analyzing your text...' : 'Humanizing your text...'}
+                                </p>
+                            </div>
+                        )}
 
                         {/* Detection Results */}
-                        {detectionResult && !outputText ? (
-                            <div className="space-y-6 h-96 overflow-y-auto">
+                        {detectionResult && !outputText && (
+                            <div className="flex-1 flex flex-col">
                                 <div className="text-center py-8">
-                                    <div className="text-6xl font-bold text-slate-900 mb-2">
+                                    <div className="text-7xl font-bold text-gray-900 mb-2">
                                         {detectionResult.displayHumanScore}%
                                     </div>
-                                    <div className="text-sm font-semibold text-slate-500 uppercase tracking-wide">
-                                        HUMAN WRITTEN
+                                    <div className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+                                        Human Score
                                     </div>
                                 </div>
 
-                                <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                                <div className="w-full bg-gray-100 rounded-full h-3 overflow-hidden mb-6">
                                     <div
-                                        className="h-2.5 bg-gradient-to-r from-red-500 via-amber-500 to-blue-500 transition-all duration-500 rounded-full"
+                                        className="h-3 rounded-full bg-gradient-to-r from-red-500 via-amber-500 to-green-500 transition-all duration-700"
                                         style={{ width: `${detectionResult.displayHumanScore}%` }}
-                                    ></div>
+                                    />
                                 </div>
 
-                                <div className="space-y-3">
-                                    <div className="flex flex-wrap gap-2 justify-center">
-                                        {detectionResult.detectorScores && detectionResult.detectorScores.slice(0, 5).map((detector, index) => {
+                                {detectionResult.detectorScores && (
+                                    <div className="flex flex-wrap gap-2 justify-center mb-6">
+                                        {detectionResult.detectorScores.map((detector, index) => {
                                             const { humanScore } = detector;
-                                            let icon = '⚠️';
-                                            let colorClass = 'text-amber-600';
-
-                                            if (humanScore >= 60) {
-                                                icon = '✅';
-                                                colorClass = 'text-blue-600';
-                                            } else if (humanScore < 40) {
-                                                icon = '⛔';
-                                                colorClass = 'text-red-500';
-                                            }
-
+                                            const passed = humanScore >= 60;
                                             return (
-                                                <div key={index} className="flex items-center gap-1.5 text-sm px-3 py-1.5 bg-slate-50 rounded-lg">
-                                                    <span className="text-xs">{icon}</span>
-                                                    <span className={colorClass}>{detector.name}</span>
+                                                <div
+                                                    key={index}
+                                                    className={`flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-lg ${
+                                                        passed ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-600'
+                                                    }`}
+                                                >
+                                                    <span>{passed ? '✓' : '✗'}</span>
+                                                    <span className="font-medium">{detector.name}</span>
                                                 </div>
                                             );
                                         })}
                                     </div>
-
-                                    {detectionResult.detectorScores && detectionResult.detectorScores.length > 5 && (
-                                        <div className="flex flex-wrap gap-2 justify-center">
-                                            {detectionResult.detectorScores.slice(5).map((detector, index) => {
-                                                const { humanScore } = detector;
-                                                let icon = '⚠️';
-                                                let colorClass = 'text-amber-600';
-
-                                                if (humanScore >= 60) {
-                                                    icon = '✅';
-                                                    colorClass = 'text-blue-600';
-                                                } else if (humanScore < 40) {
-                                                    icon = '⛔';
-                                                    colorClass = 'text-red-500';
-                                                }
-
-                                                return (
-                                                    <div key={index} className="flex items-center gap-1.5 text-sm px-3 py-1.5 bg-slate-50 rounded-lg">
-                                                        <span className="text-xs">{icon}</span>
-                                                        <span className={colorClass}>{detector.name}</span>
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        ) : outputText ? (
-                            /* Humanized Output */
-                            <textarea
-                                value={outputText}
-                                readOnly
-                                className="w-full h-96 resize-none text-slate-800 text-base focus:outline-none border border-slate-200 rounded-xl p-4 bg-slate-50"
-                            />
-                        ) : (
-                            /* Loading or Error State */
-                            <div className="flex flex-col items-center justify-center h-96">
-                                {isDetecting || isHumanizing ? (
-                                    <>
-                                        <div className="w-12 h-12 rounded-full border-2 border-slate-200 border-t-blue-500 animate-spin mb-4"></div>
-                                        <p className="text-slate-500">
-                                            {isDetecting ? 'Analyzing text...' : 'Humanizing text...'}
-                                        </p>
-                                    </>
-                                ) : (
-                                    <div className="text-center">
-                                        <div className="text-4xl mb-4">⚠️</div>
-                                        <p className="text-red-500 font-semibold">Something went wrong. Try again.</p>
-                                        <p className="text-sm text-slate-500 mt-2">Insufficient balance</p>
-                                    </div>
                                 )}
+
+                                <div className="mt-auto">
+                                    <button
+                                        onClick={handleReset}
+                                        className="w-full py-3 text-sm text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-xl transition-colors"
+                                    >
+                                        Start New Check
+                                    </button>
+                                </div>
                             </div>
                         )}
 
-                        {/* Reset Button */}
-                        {(detectionResult || outputText) && (
-                            <button
-                                onClick={handleReset}
-                                className="w-full mt-4 py-2.5 text-sm text-slate-600 hover:text-slate-900 transition-colors"
-                            >
-                                Start New
-                            </button>
+                        {/* Humanized Output */}
+                        {outputText && (
+                            <div className="flex-1 flex flex-col">
+                                <div className="flex justify-between items-center mb-4">
+                                    <h3 className="text-sm font-semibold text-gray-900">Humanized Text</h3>
+                                    <button
+                                        onClick={handleCopy}
+                                        className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+                                    >
+                                        {copied ? (
+                                            <>
+                                                <Check className="w-4 h-4 text-green-500" />
+                                                Copied!
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Copy className="w-4 h-4" />
+                                                Copy
+                                            </>
+                                        )}
+                                    </button>
+                                </div>
+
+                                <textarea
+                                    value={outputText}
+                                    readOnly
+                                    className="flex-1 w-full resize-none text-gray-800 text-base focus:outline-none border border-gray-200 rounded-xl p-4 bg-gray-50"
+                                />
+
+                                <button
+                                    onClick={handleReset}
+                                    className="w-full mt-4 py-3 text-sm text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-xl transition-colors"
+                                >
+                                    Start New
+                                </button>
+                            </div>
                         )}
                     </div>
                 </div>
