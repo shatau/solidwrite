@@ -117,7 +117,7 @@ const Testimonials3 = () => {
         </div>
 
         {/* Trust bar */}
-        <div className="mt-20 text-center">
+        {/* <div className="mt-20 text-center">
           <p className="text-sm text-gray-500 mb-6">Trusted by writers at</p>
           <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-50">
             {["Harvard", "Stanford", "MIT", "Oxford", "Yale"].map((uni) => (
@@ -126,7 +126,7 @@ const Testimonials3 = () => {
               </span>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   )
