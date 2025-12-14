@@ -145,6 +145,6 @@ export const authOptions = {
   },
   theme: {
     brandColor: config.colors.main,
-    logo: `https://${config.domainName}/icon.png`,
+    logo: `https://solidwrite.com/icon.png`,
   },
 };

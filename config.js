@@ -2,7 +2,7 @@ const config = {
   appName: "SolidWrite",
   appDescription:
     "Transform AI-generated text into natural, human-like content that bypasses AI detection.",
-  domainName: "SolidWrite.com",
+  domainName: "solidwrite.com",
   crisp: {
     id: "",
     onlyShowOnRoutes: ["/"],
