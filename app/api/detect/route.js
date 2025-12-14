@@ -1,11 +1,12 @@
-import { auth } from "@/libs/auth";
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/libs/auth"
 import { deductCredits, checkCredits } from "@/libs/creditManager";
 import { NextResponse } from 'next/server';
 
 
 export async function POST(req) {
   try {
-    const session = await auth();
+    const session = await getServerSession(authOptions);
     
     if (!session?.user?.id) {
       return NextResponse.json(

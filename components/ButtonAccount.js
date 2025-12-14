@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { Popover, Transition } from "@headlessui/react";
-import { useSession, signOut } from "next-auth/react";
+import { useSession, signOut } from "@/libs/authClient";
 import apiClient from "@/libs/api";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -14,7 +14,7 @@ import { usePathname } from "next/navigation";
 //     You have to manually activate the Customer Portal in your Stripe Dashboard (https://dashboard.stripe.com/test/settings/billing/portal)
 //     This is only available if the customer has a customerId (they made a purchase previously)
 //  2. Logout: sign out and go back to homepage
-// See more at http://localhost:3000/docs/components/buttonAccount
+// See more at https://solidwrite.com/docs/components/buttonAccount
 const ButtonAccount = () => {
   const { data: session, status } = useSession();
   const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +27,7 @@ const ButtonAccount = () => {
   const callbackUrl = `/`; // Construct the callback URL with the language prefix
 
   const handleSignOut = () => {
-    signOut({ callbackUrl });
+    signOut({ callbackUrl: "/" })
   };
   const handleBilling = async () => {
     setIsLoading(true);

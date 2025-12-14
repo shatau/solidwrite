@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/libs/auth";
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/libs/auth"
 import { createCheckout } from "@/libs/stripe";
 import connectMongo from "@/libs/mongoose";
 import User from "@/models/User";
@@ -28,7 +29,7 @@ export async function POST(req) {
   }
 
   try {
-    const session = await auth();
+    const session = await getServerSession(authOptions);
 
     //console.log("🔵 CREATE CHECKOUT - Session:", session?.user?.id);
 

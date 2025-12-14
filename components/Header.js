@@ -4,11 +4,11 @@ import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
-import ButtonSignin from "./ButtonSignin"
 import logo from "@/app/icon.png"
 import config from "@/config"
 import ButtonAccount from "./ButtonAccount"
-import { useSession } from "next-auth/react"
+import { useSession, signIn } from "next-auth/react"
+import { useRouter } from "next/navigation"
 
 const links = [
   { href: "/#how-it-works", label: "How It Works" },
@@ -32,6 +32,14 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+
+
+  const router = useRouter()
+
+  const handleSignIn = () => {
+    router.push("/signin")
+  }
+
   return (
     <>
       <header
@@ -42,7 +50,6 @@ const Header = () => {
         }`}
       >
         <nav className="max-w-7xl flex items-center justify-between px-6 lg:px-8 py-4 mx-auto" aria-label="Global">
-          {/* Logo */}
           <div className="flex lg:flex-1">
             <Link className="flex items-center gap-2.5 shrink-0 group" href="/" title={`${config.appName} homepage`}>
               <Image
@@ -60,7 +67,6 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Mobile menu button */}
           <div className="flex lg:hidden">
             <button
               type="button"
@@ -74,7 +80,6 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Desktop nav */}
           <div className="hidden lg:flex lg:justify-center lg:gap-1 lg:items-center">
             {links.map((link) => (
               <Link
@@ -88,7 +93,6 @@ const Header = () => {
             ))}
           </div>
 
-          {/* Desktop CTA */}
           <div className="hidden lg:flex lg:justify-end lg:flex-1 lg:gap-3 lg:items-center">
             {status === "authenticated" ? (
               <>
@@ -102,25 +106,24 @@ const Header = () => {
               </>
             ) : (
               <>
-                <Link
-                  href="/api/auth/signin"
+                <button
+                  onClick={handleSignIn}
                   className="px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
                 >
                   Sign in
-                </Link>
-                <Link
-                  href="/api/auth/signin"
+                </button>
+                <button
+                  onClick={handleSignIn}
                   className="px-5 py-2.5 text-sm font-semibold text-white bg-gray-900 hover:bg-gray-800 rounded-xl transition-all shadow-sm hover:shadow-md"
                 >
                   Get Started Free
-                </Link>
+                </button>
               </>
             )}
           </div>
         </nav>
       </header>
 
-      {/* Mobile menu */}
       {isOpen && (
         <>
           <div
@@ -175,20 +178,24 @@ const Header = () => {
                   </>
                 ) : (
                   <>
-                    <Link
-                      href="/api/auth/signin"
+                    <button
+                      onClick={() => {
+                        setIsOpen(false)
+                        handleSignIn()
+                      }}
                       className="w-full px-6 py-3 text-center text-sm font-medium text-gray-700 hover:text-gray-900 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all"
-                      onClick={() => setIsOpen(false)}
                     >
                       Sign in
-                    </Link>
-                    <Link
-                      href="/api/auth/signin"
+                    </button>
+                    <button
+                      onClick={() => {
+                        setIsOpen(false)
+                        handleSignIn()
+                      }}
                       className="w-full px-6 py-3 text-center text-sm font-semibold text-white bg-gray-900 hover:bg-gray-800 rounded-xl transition-all"
-                      onClick={() => setIsOpen(false)}
                     >
                       Get Started Free
-                    </Link>
+                    </button>
                   </>
                 )}
               </div>

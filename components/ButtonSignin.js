@@ -3,36 +3,27 @@
 import { useSession, signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
 import config from "@/config";
 
 const ButtonSignin = ({ 
   text = "Sign In", 
-  authenticatedText = "To Your Albums",
+  authenticatedText = "Dashboard",
   extraStyle 
 }) => {
   const router = useRouter();
   const { data: session, status } = useSession();
-  const pathname = usePathname();
-
-  // Extract language prefix from the pathname
-  const match = pathname.match(/^\/([a-z]{2})/);
-  const lang = match ? match[1] : 'en'; // Default to 'en' if no language prefix is found
-
-  const callbackUrl = `/dashboard`; // Construct the callback URL with the language prefix
-
   const handleClick = () => {
     if (status === "authenticated") {
-      router.push(callbackUrl);
+      router.push("/dashboard");
     } else {
-      signIn(undefined, { callbackUrl });
+      router.push("/signin");
     }
   };
 
   if (status === "authenticated") {
     return (
       <Link
-        href={callbackUrl}
+        href="/dashboard"
         className={`btn ${extraStyle ? extraStyle : ""}`}
       >
         {authenticatedText}

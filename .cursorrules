@@ -38,11 +38,12 @@ You are an expert full-stack developer working on SolidWrite, a Next.js SaaS boi
 ### API Route Structure
 ```javascript
 import { NextResponse } from "next/server";
-import { auth } from "@/libs/auth";
+import { getServerSession } from "next-auth"
+import { authOptions } from "@/libs/auth"
 
 export async function POST(req) {
   try {
-    const session = await auth();
+    const session = await getServerSession(authOptions);
     const body = await req.json();
     
     // Validation
