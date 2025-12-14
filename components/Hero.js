@@ -10,6 +10,7 @@ const Hero = () => {
   const [error, setError] = useState(null)
   const [showResults, setShowResults] = useState(false)
   const maxWords = 500
+  const minWords = 50
 
   const wordCount = text.trim().split(/\s+/).filter(Boolean).length
 
@@ -25,7 +26,17 @@ const Hero = () => {
   }
 
   const handleDetect = async () => {
-    if (!text.trim() || wordCount > maxWords) return
+    if (!text.trim()) return
+
+    if (wordCount < minWords) {
+      setError(`Minimum ${minWords} words required. Current: ${wordCount} words.`)
+      return
+    }
+
+    if (wordCount > maxWords) {
+      setError(`Maximum ${maxWords} words allowed. Current: ${wordCount} words.`)
+      return
+    }
 
     setIsDetecting(true)
     setError(null)
@@ -62,6 +73,10 @@ const Hero = () => {
   }
 
   const handleHumanize = () => {
+    if (wordCount < minWords) {
+      setError(`Minimum ${minWords} words required. Current: ${wordCount} words.`)
+      return
+    }
     window.location.href = "/dashboard"
   }
 
@@ -128,12 +143,6 @@ const Hero = () => {
                Try for Free
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
-              {/* <a
-                href="#how-it-works"
-                className="px-8 py-4 bg-white hover:bg-gray-50 text-gray-900 rounded-2xl text-lg font-semibold transition-all border border-gray-200 shadow-sm hover:shadow-md flex items-center justify-center gap-2"
-              >
-                See How It Works
-              </a> */}
             </div>
 
 
@@ -144,7 +153,6 @@ const Hero = () => {
                 {/* Card header */}
                 <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-white">
                   <div className="flex items-center gap-3">
-
                     <span className="text-sm font-medium text-gray-600">Your Text</span>
                   </div>
                   <button
@@ -170,13 +178,27 @@ const Hero = () => {
 
                 {/* Card footer */}
                 <div className="flex flex-col sm:flex-row justify-between items-center gap-4 px-6 py-4 border-t border-gray-100 bg-gray-50/50">
-                  <span className={`text-sm font-medium ${wordCount > maxWords ? "text-red-500" : "text-gray-500"}`}>
-                    {wordCount.toLocaleString()} / {maxWords.toLocaleString()} words
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className={`text-sm font-medium ${
+                      wordCount < minWords ? "text-amber-600" : 
+                      wordCount > maxWords ? "text-red-500" : 
+                      "text-gray-500"
+                    }`}>
+                      {wordCount.toLocaleString()} / {maxWords.toLocaleString()} words
+                    </span>
+                    {wordCount < minWords && wordCount > 0 && (
+                      <span className="text-xs px-2 py-0.5 bg-amber-100 text-amber-600 rounded-full font-medium">
+                        Min {minWords} words
+                      </span>
+                    )}
+                    {wordCount > maxWords && (
+                      <span className="text-xs px-2 py-0.5 bg-red-100 text-red-600 rounded-full font-medium">Over limit</span>
+                    )}
+                  </div>
                   <div className="flex gap-3 w-full sm:w-auto">
                     <button
                       onClick={handleDetect}
-                      disabled={!text.trim() || wordCount > maxWords || isDetecting}
+                      disabled={!text.trim() || wordCount < minWords || wordCount > maxWords || isDetecting}
                       className="flex-1 sm:flex-none px-6 py-3 bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed text-gray-700 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2"
                     >
                       {isDetecting ? (
@@ -193,7 +215,7 @@ const Hero = () => {
                     </button>
                     <button
                       onClick={handleHumanize}
-                      disabled={!text.trim() || wordCount > maxWords}
+                      disabled={!text.trim() || wordCount < minWords || wordCount > maxWords}
                       className="flex-1 sm:flex-none px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2 shadow-sm shadow-blue-600/20"
                     >
                       <Sparkles className="w-4 h-4" />
@@ -208,37 +230,6 @@ const Hero = () => {
                 <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">{error}</div>
               )}
             </div>
-
-            {/* Stats */}
-            {/* <div className="flex flex-wrap justify-center gap-8 mt-16">
-              {stats.map((stat, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center">
-                    <stat.icon className="w-5 h-5 text-gray-600" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-xl font-bold text-gray-900">{stat.value}</div>
-                    <div className="text-sm text-gray-500">{stat.label}</div>
-                  </div>
-                </div>
-              ))}
-            </div> */}
-
-            {/* Trust indicators */}
-            {/* <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mt-12 text-sm text-gray-500">
-              <div className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-green-500" />
-                <span>Bypasses All Detectors</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-green-500" />
-                <span>Preserves Original Meaning</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-green-500" />
-                <span>No Credit Card Required</span>
-              </div>
-            </div> */}
           </div>
         </div>
       </section>
@@ -296,13 +287,27 @@ const Hero = () => {
             />
 
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 px-6 py-4 border-t border-gray-100 bg-gray-50/50">
-              <span className={`text-sm font-medium ${wordCount > maxWords ? "text-red-500" : "text-gray-500"}`}>
-                {wordCount} / {maxWords} words
-              </span>
+              <div className="flex items-center gap-2">
+                <span className={`text-sm font-medium ${
+                  wordCount < minWords ? "text-amber-600" : 
+                  wordCount > maxWords ? "text-red-500" : 
+                  "text-gray-500"
+                }`}>
+                  {wordCount} / {maxWords} words
+                </span>
+                {wordCount < minWords && wordCount > 0 && (
+                  <span className="text-xs px-2 py-0.5 bg-amber-100 text-amber-600 rounded-full font-medium">
+                    Min {minWords}
+                  </span>
+                )}
+                {wordCount > maxWords && (
+                  <span className="text-xs px-2 py-0.5 bg-red-100 text-red-600 rounded-full font-medium">Over limit</span>
+                )}
+              </div>
               <div className="flex gap-3 w-full sm:w-auto">
                 <button
                   onClick={handleDetect}
-                  disabled={!text.trim() || wordCount > maxWords || isDetecting}
+                  disabled={!text.trim() || wordCount < minWords || wordCount > maxWords || isDetecting}
                   className="flex-1 sm:flex-none px-5 py-2.5 bg-gray-100 hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed text-gray-700 rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2"
                 >
                   {isDetecting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Shield className="w-4 h-4" />}
@@ -310,7 +315,7 @@ const Hero = () => {
                 </button>
                 <button
                   onClick={handleHumanize}
-                  disabled={!text.trim() || wordCount > maxWords}
+                  disabled={!text.trim() || wordCount < minWords || wordCount > maxWords}
                   className="flex-1 sm:flex-none px-5 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl text-sm font-semibold transition-all flex items-center justify-center gap-2"
                 >
                   <Sparkles className="w-4 h-4" />
