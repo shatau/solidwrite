@@ -31,7 +31,7 @@ const testimonials = [
     role: "PhD Researcher",
     avatar: "DP",
     rating: 5,
-    text: "I was skeptical at first, but the quality exceeded my expectations. It doesn't just rewrite — it preserves my academic tone while making it undetectable.",
+    text: "I was skeptical at first, but the quality exceeded my expectations. It doesn&apos;t just rewrite — it preserves my academic tone while making it undetectable.",
     highlight: "Preserves academic tone",
   },
   {
@@ -39,7 +39,7 @@ const testimonials = [
     role: "Blogger",
     avatar: "LR",
     rating: 5,
-    text: "Finally, a tool that actually works. My content passes every AI detector I've tried. The interface is intuitive and results are instant.",
+    text: "Finally, a tool that actually works. My content passes every AI detector I&apos;ve tried. The interface is intuitive and results are instant.",
     highlight: "Works every time",
   },
   {
