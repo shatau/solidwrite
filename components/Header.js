@@ -11,18 +11,9 @@ import ButtonAccount from "./ButtonAccount"
 import { useSession } from "next-auth/react"
 
 const links = [
-  {
-    href: "/#pricing",
-    label: "Pricing",
-  },
-  {
-    href: "/#how-it-works",
-    label: "How It Works",
-  },
-  {
-    href: "/#faq",
-    label: "FAQ",
-  },
+  { href: "/#how-it-works", label: "How It Works" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/#faq", label: "FAQ" },
 ]
 
 const Header = () => {
@@ -36,65 +27,60 @@ const Header = () => {
   }, [searchParams])
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
+    const handleScroll = () => setScrolled(window.scrollY > 10)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   return (
     <>
-      <header className={`w-full fixed top-0 z-40 transition-all duration-300 ${
-        scrolled 
-          ? "bg-white/90 backdrop-blur-xl shadow-sm border-b border-slate-200/50" 
-          : "bg-white"
-      }`}>
-        <nav className="container flex items-center justify-between px-6 py-4 mx-auto " aria-label="Global">
+      <header
+        className={`w-full fixed top-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "bg-white/80 backdrop-blur-2xl shadow-[0_1px_0_0_rgba(0,0,0,0.05)] border-b border-gray-100/50"
+            : "bg-transparent"
+        }`}
+      >
+        <nav className="max-w-7xl flex items-center justify-between px-6 lg:px-8 py-4 mx-auto" aria-label="Global">
           {/* Logo */}
           <div className="flex lg:flex-1">
-            <Link className="flex items-center gap-2 shrink-0 group" href="/" title={`${config.appName} homepage`}>
+            <Link className="flex items-center gap-2.5 shrink-0 group" href="/" title={`${config.appName} homepage`}>
               <Image
-                src={logo || "/placeholder.svg"}
+                src={logo}
                 alt={`${config.appName} logo`}
-                className="w-8 h-8"
+                className="w-9 h-9 transition-transform group-hover:scale-105"
                 placeholder="blur"
                 priority={true}
-                width={32}
-                height={32}
+                width={36}
+                height={36}
               />
-              <span className="font-semibold text-lg text-slate-900 group-hover:text-blue-600 transition-colors">
+              <span className="font-bold text-xl tracking-tight text-gray-900">
                 {config.appName}
               </span>
             </Link>
           </div>
 
-          {/* Burger button on mobile */}
+          {/* Mobile menu button */}
           <div className="flex lg:hidden">
             <button
               type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700 hover:text-slate-900"
+              className="inline-flex items-center justify-center rounded-xl p-2.5 text-gray-600 hover:text-gray-900 hover:bg-gray-100/80 transition-colors"
               onClick={() => setIsOpen(true)}
             >
               <span className="sr-only">Open main menu</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
               </svg>
             </button>
           </div>
 
-          {/* Links on desktop */}
-          <div className="hidden lg:flex lg:justify-center lg:gap-8 lg:items-center">
+          {/* Desktop nav */}
+          <div className="hidden lg:flex lg:justify-center lg:gap-1 lg:items-center">
             {links.map((link) => (
               <Link
                 href={link.href}
                 key={link.href}
-                className="text-slate-600 hover:text-slate-900 text-sm font-medium transition-colors"
+                className="px-4 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium rounded-xl hover:bg-gray-100/60 transition-all"
                 title={link.label}
               >
                 {link.label}
@@ -102,105 +88,108 @@ const Header = () => {
             ))}
           </div>
 
-          {/* CTA on desktop */}
+          {/* Desktop CTA */}
           <div className="hidden lg:flex lg:justify-end lg:flex-1 lg:gap-3 lg:items-center">
             {status === "authenticated" ? (
               <>
-                <ButtonSignin
-                  extraStyle="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-full text-sm font-medium transition-all"
-                  text="Get started"
-                  authenticatedText="Dashboard"
-                />
+                <Link
+                  href="/dashboard"
+                  className="px-5 py-2.5 text-sm font-semibold text-white bg-gray-900 hover:bg-gray-800 rounded-xl transition-all shadow-sm hover:shadow-md"
+                >
+                  Dashboard
+                </Link>
                 <ButtonAccount />
               </>
             ) : (
-              <ButtonSignin extraStyle="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-full text-sm font-medium transition-all" />
+              <>
+                <Link
+                  href="/api/auth/signin"
+                  className="px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
+                >
+                  Sign in
+                </Link>
+                <Link
+                  href="/api/auth/signin"
+                  className="px-5 py-2.5 text-sm font-semibold text-white bg-gray-900 hover:bg-gray-800 rounded-xl transition-all shadow-sm hover:shadow-md"
+                >
+                  Get Started Free
+                </Link>
+              </>
             )}
           </div>
         </nav>
       </header>
 
-      {/* Mobile menu - OUTSIDE header, portal to body */}
+      {/* Mobile menu */}
       {isOpen && (
         <>
-          {/* Backdrop overlay */}
-          <div 
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[9998] lg:hidden"
+          <div
+            className="fixed inset-0 bg-gray-900/20 backdrop-blur-sm z-[9998] lg:hidden"
             onClick={() => setIsOpen(false)}
           />
-          
-          {/* Mobile menu panel */}
-          <div 
-            className="fixed top-0 right-0 bottom-0 bg-white shadow-2xl overflow-y-auto z-[9999] lg:hidden"
-            style={{
-              width: '100%',
-              maxWidth: '24rem',
-            }}
-          >
-            {/* Logo on mobile */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
-              <Link className="flex items-center gap-2 shrink-0" title={`${config.appName} homepage`} href="/" onClick={() => setIsOpen(false)}>
-                <Image
-                  src={logo || "/placeholder.svg"}
-                  alt={`${config.appName} logo`}
-                  className="w-8 h-8"
-                  placeholder="blur"
-                  priority={true}
-                  width={32}
-                  height={32}
-                />
-                <span className="font-semibold text-lg text-slate-900">{config.appName}</span>
+          <div className="fixed top-0 right-0 bottom-0 w-full max-w-sm bg-white shadow-2xl z-[9999] lg:hidden">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+              <Link className="flex items-center gap-2 shrink-0" href="/" onClick={() => setIsOpen(false)}>
+                <Image src={logo} alt={`${config.appName} logo`} className="w-8 h-8" priority width={32} height={32} />
+                <span className="font-bold text-lg text-gray-900">{config.appName}</span>
               </Link>
               <button
                 type="button"
-                className="-m-2.5 rounded-md p-2.5 text-slate-500 hover:text-slate-900"
+                className="rounded-xl p-2.5 text-gray-500 hover:text-gray-900 hover:bg-gray-100"
                 onClick={() => setIsOpen(false)}
               >
                 <span className="sr-only">Close menu</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
 
-            {/* Links on mobile */}
-            <div className="px-6 py-6">
-              <div className="flex flex-col gap-y-4 items-start">
+            <div className="px-6 py-8">
+              <div className="flex flex-col gap-2">
                 {links.map((link) => (
                   <Link
                     href={link.href}
                     key={link.href}
-                    className="text-slate-700 hover:text-slate-900 font-medium transition-colors text-lg w-full"
-                    title={link.label}
+                    className="px-4 py-3 text-gray-700 hover:text-gray-900 font-medium rounded-xl hover:bg-gray-50 transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
                   </Link>
                 ))}
               </div>
-              
-              <div className="border-t border-slate-100 my-6"></div>
 
-              {/* CTA on mobile */}
+              <div className="border-t border-gray-100 my-6" />
+
               <div className="flex flex-col gap-3">
                 {status === "authenticated" ? (
                   <>
-                    <ButtonSignin
-                      extraStyle="w-full px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-full font-medium transition-all"
-                      text="Get started"
-                      authenticatedText="Dashboard"
-                    />
+                    <Link
+                      href="/dashboard"
+                      className="w-full px-6 py-3 text-center text-sm font-semibold text-white bg-gray-900 hover:bg-gray-800 rounded-xl transition-all"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Dashboard
+                    </Link>
                     <ButtonAccount />
                   </>
                 ) : (
-                  <ButtonSignin extraStyle="w-full px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-full font-medium transition-all" />
+                  <>
+                    <Link
+                      href="/api/auth/signin"
+                      className="w-full px-6 py-3 text-center text-sm font-medium text-gray-700 hover:text-gray-900 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Sign in
+                    </Link>
+                    <Link
+                      href="/api/auth/signin"
+                      className="w-full px-6 py-3 text-center text-sm font-semibold text-white bg-gray-900 hover:bg-gray-800 rounded-xl transition-all"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Get Started Free
+                    </Link>
+                  </>
                 )}
               </div>
             </div>

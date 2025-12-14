@@ -1,77 +1,101 @@
 "use client"
-import { Shield, CheckCircle } from "lucide-react"
+import Image from "next/image"
+import turnitin from "@/app/turnitin.png"
+import gptzero from "@/app/gptzero.png"
+import zerogpt from "@/app/zerogpt.png"
+import copyleaks from "@/app/copyleaks.png"
+import grammarly from "@/app/grammarly.png"
+import quillbot from "@/app/quillbot.png"
 
 const Problem = () => {
   const detectors = [
-    { name: "Turnitin", bypass: true },
-    { name: "GPTZero", bypass: true },
-    { name: "ZeroGPT", bypass: true },
-    // { name: "Originality.ai", bypass: true },
-    { name: "Copyleaks", bypass: true },
-    // { name: "Writer.com", bypass: true },
-    { name: "Grammarly", bypass: true },
-    { name: "QuillBot", bypass: true },
+    { name: "Turnitin", logo: turnitin },
+    { name: "GPTZero", logo: gptzero },
+    { name: "ZeroGPT", logo: zerogpt },
+    { name: "Copyleaks", logo: copyleaks },
+    { name: "Grammarly", logo: grammarly },
+    { name: "QuillBot", logo: quillbot },
   ]
 
+  // Duplicate for infinite scroll effect
+  const allDetectors = [...detectors, ...detectors]
+
   return (
-    <section className="bg-white py-16 lg:py-20 border-y border-slate-100">
-      <div className=" mx-auto px-6">
-        {/* Header */}
+    <section className="relative py-20 bg-white overflow-hidden">
+      {/* Top fade */}
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#FAFAFA] to-transparent pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 leading-tight text-slate-900">
-            Bypass All Major{" "}
-            <span className="text-blue-600">AI Content Detectors</span>
+          <p className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
+            Proven Results
+          </p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+            Bypass All Major AI Detectors
           </h2>
         </div>
 
-        {/* Detector Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-5xl mx-auto">
-          {detectors.map((detector, index) => (
-            <div
-              key={index}
-              className="bg-slate-50 border border-slate-100 rounded-xl p-5 hover:bg-white hover:border-slate-200 hover:shadow-md transition-all duration-300 group"
-            >
-              <div className="flex flex-col items-center text-center justify-center">
-                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-3 group-hover:bg-blue-600 transition-colors">
-                  <Shield className="w-5 h-5 text-blue-600 group-hover:text-white transition-colors" />
+        {/* Animated logo carousel */}
+        <div className="relative">
+          {/* Left fade */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          {/* Right fade */}
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+          {/* Scrolling container */}
+          <div className="flex overflow-hidden">
+            <div className="flex animate-scroll gap-16 py-8">
+              {allDetectors.map((detector, index) => (
+                <div
+                  key={`${detector.name}-${index}`}
+                  className="flex-shrink-0 flex items-center justify-center w-40 h-16   transition-all duration-300"
+                >
+                  <Image
+                    src={detector.logo}
+                    alt={`${detector.name} logo`}
+                    width={1600}
+                    height={48}
+                    className="object-contain max-h-12"
+                  />
                 </div>
-                <h3 className="font-semibold text-slate-900 text-sm mb-1.5">{detector.name}</h3>
-                <div className="flex items-center gap-1.5 text-blue-600 text-xs font-medium">
-                  <CheckCircle className="w-3.5 h-3.5" />
-                  <span>Bypassed</span>
-                </div>
-              </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Stats bar */}
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+          {[
+            { value: "99.2%", label: "Success Rate" },
+            { value: "1M+", label: "Texts Humanized" },
+            { value: "50K+", label: "Happy Users" },
+            { value: "<3s", label: "Avg Processing" },
+          ].map((stat, i) => (
+            <div key={i} className="text-center">
+              <div className="text-3xl lg:text-4xl font-bold text-gray-900">{stat.value}</div>
+              <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
             </div>
           ))}
         </div>
-
-        {/* Stats Section */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
-          <div className="text-center p-8 bg-white/70 backdrop-blur-sm border border-blue-200 rounded-2xl shadow-sm">
-            <div className="text-5xl font-bold bg-gradient-to-r from-blue-700 to-blue-600 bg-clip-text text-transparent mb-2">
-              99.8%
-            </div>
-            <p className="text-gray-900 font-medium">Success Rate</p>
-            <p className="text-sm text-gray-600 mt-2">Bypass accuracy across all detectors</p>
-          </div>
-
-          <div className="text-center p-8 bg-white/70 backdrop-blur-sm border border-blue-200 rounded-2xl shadow-sm">
-            <div className="text-5xl font-bold bg-gradient-to-r from-blue-700 to-blue-600 bg-clip-text text-transparent mb-2">
-              50K+
-            </div>
-            <p className="text-gray-900 font-medium">Active Users</p>
-            <p className="text-sm text-gray-600 mt-2">Trusted by students and professionals</p>
-          </div>
-
-          <div className="text-center p-8 bg-white/70 backdrop-blur-sm border border-blue-200 rounded-2xl shadow-sm">
-            <div className="text-5xl font-bold bg-gradient-to-r from-blue-700 to-blue-600 bg-clip-text text-transparent mb-2">
-              10M+
-            </div>
-            <p className="text-gray-900 font-medium">Words Humanized</p>
-            <p className="text-sm text-gray-600 mt-2">Processing millions of words monthly</p>
-          </div>
-        </div> */}
       </div>
+
+      {/* CSS for animation */}
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-scroll {
+          animation: scroll 25s linear infinite;
+        }
+        .animate-scroll:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </section>
   )
 }

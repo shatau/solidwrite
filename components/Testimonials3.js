@@ -1,93 +1,142 @@
-import Image from "next/image"
-import { Star } from "lucide-react"
+"use client"
+import { Star, Quote } from "lucide-react"
 
-const list = [
+const testimonials = [
   {
-    username: "alex",
-    name: "Alex Anderson",
-    text: "This is amazing. My content passes all detection tools and reads like it was written by a native speaker. Worth every penny.",
-  
+    name: "Emily Chen",
+    role: "Graduate Student",
+    avatar: "EC",
+    rating: 5,
+    text: "This tool saved my thesis. My advisor was impressed by how naturally my research flowed. The humanized text passed Turnitin with flying colors.",
+    highlight: "Passed Turnitin perfectly",
   },
   {
-    username: "james",
+    name: "Marcus Williams",
+    role: "Content Writer",
+    avatar: "MW",
+    rating: 5,
+    text: "As a freelancer, I use AI to draft content but needed it to sound authentic. This tool transformed my workflow completely. Clients love the results.",
+    highlight: "Transformed my workflow",
+  },
+  {
+    name: "Sarah Johnson",
+    role: "Marketing Manager",
+    avatar: "SJ",
+    rating: 5,
+    text: "We produce dozens of blog posts weekly. This tool ensures every piece reads naturally while maintaining our brand voice. Absolute game-changer.",
+    highlight: "Game-changer for our team",
+  },
+  {
+    name: "Daniel Park",
+    role: "PhD Researcher",
+    avatar: "DP",
+    rating: 5,
+    text: "I was skeptical at first, but the quality exceeded my expectations. It doesn't just rewrite — it preserves my academic tone while making it undetectable.",
+    highlight: "Preserves academic tone",
+  },
+  {
+    name: "Lisa Rodriguez",
+    role: "Blogger",
+    avatar: "LR",
+    rating: 5,
+    text: "Finally, a tool that actually works. My content passes every AI detector I've tried. The interface is intuitive and results are instant.",
+    highlight: "Works every time",
+  },
+  {
     name: "James Mitchell",
-    text: "Humanized text passed every detector test I tried. Pretty cool.",
-   
-  },
-  {
-    username: "lisa",
-    name: "Lisa",
-    text: "This tool saved my assignment. My professor couldn't tell the difference. The text flows naturally and sounds like I actually wrote it.",
-   
+    role: "Business Owner",
+    avatar: "JM",
+    rating: 5,
+    text: "Worth every penny. We use it for all our website copy, emails, and marketing materials. The ROI has been incredible.",
+    highlight: "Incredible ROI",
   },
 ]
 
-const Testimonial = ({ i }) => {
-  const testimonial = list[i]
-
-  if (!testimonial) return null
+const TestimonialCard = ({ testimonial }) => {
+  const gradients = [
+    "from-blue-500 to-indigo-600",
+    "from-purple-500 to-pink-600",
+    "from-emerald-500 to-teal-600",
+    "from-amber-500 to-orange-600",
+    "from-rose-500 to-red-600",
+    "from-cyan-500 to-blue-600",
+  ]
+  const gradient = gradients[Math.floor(Math.random() * gradients.length)]
 
   return (
-    <li key={i}>
-      <figure className="relative h-full p-6 bg-white rounded-2xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all flex flex-col">
-        {/* Stars */}
-        <div className="flex gap-1 mb-4">
-          {[...Array(5)].map((_, idx) => (
-            <Star key={idx} className="w-4 h-4 fill-amber-400 text-amber-400" />
-          ))}
+    <div className="group relative bg-white rounded-3xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:border-gray-200 transition-all duration-500">
+      {/* Quote icon */}
+      <div className="absolute top-6 right-6 opacity-10">
+        <Quote className="w-12 h-12 text-gray-900" />
+      </div>
+
+      {/* Stars */}
+      <div className="flex gap-1 mb-6">
+        {[...Array(testimonial.rating)].map((_, i) => (
+          <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+        ))}
+      </div>
+
+      {/* Highlight badge */}
+      <div className="inline-block px-3 py-1 mb-4 text-xs font-semibold text-blue-600 bg-blue-50 rounded-full">
+        {testimonial.highlight}
+      </div>
+
+      {/* Quote */}
+      <blockquote className="text-gray-700 leading-relaxed mb-8">
+        "{testimonial.text}"
+      </blockquote>
+
+      {/* Author */}
+      <div className="flex items-center gap-4 pt-6 border-t border-gray-100">
+        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center text-sm font-bold text-gray-600">
+          {testimonial.avatar}
         </div>
-
-        {/* Quote */}
-        <blockquote className="relative flex-1 mb-6">
-          <p className="text-slate-600 leading-relaxed text-sm">&quot;{testimonial.text}&quot;</p>
-        </blockquote>
-
-        {/* Author */}
-        <figcaption className="flex items-center gap-3 pt-5 border-t border-slate-100">
-          <div className="flex-shrink-0">
-            {testimonial.img ? (
-              <Image
-                className="w-10 h-10 rounded-full object-cover"
-                src={testimonial.img || "/placeholder.svg"}
-                alt={testimonial.name}
-                width={40}
-                height={40}
-              />
-            ) : (
-              <div className="w-10 h-10 rounded-full flex items-center justify-center bg-blue-100 text-blue-600 font-semibold text-sm">
-                {testimonial.name.charAt(0)}
-              </div>
-            )}
-          </div>
-          <div>
-            <div className="font-medium text-slate-900 text-sm">{testimonial.name}</div>
-            {testimonial.username && <div className="text-xs text-slate-500">@{testimonial.username}</div>}
-          </div>
-        </figcaption>
-      </figure>
-    </li>
+        <div>
+          <div className="font-semibold text-gray-900">{testimonial.name}</div>
+          <div className="text-sm text-gray-500">{testimonial.role}</div>
+        </div>
+      </div>
+    </div>
   )
 }
 
 const Testimonials3 = () => {
   return (
-    <section id="testimonials" className="relative bg-slate-50 px-6 py-20 lg:py-28">
-      <div className=" mx-auto">
+    <section id="testimonials" className="relative py-24 lg:py-32 bg-[#FAFAFA] overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#00000005_1px,transparent_1px),linear-gradient(to_bottom,#00000005_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+
+      <div className="relative max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">
-            Testimonials
-          </span>
-          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Trusted by thousands</h2>
-          <p className="text-slate-600 max-w-xl mx-auto">See what users are saying about their results.</p>
+        <div className="text-center mb-20">
+          <p className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">Testimonials</p>
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Loved by 50,000+ Writers
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            See why students, professionals, and content creators trust us with their most important work.
+          </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <ul role="list" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(3)].map((e, i) => (
-            <Testimonial key={i} i={i} />
+        {/* Testimonials grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {testimonials.map((testimonial, i) => (
+            <TestimonialCard key={i} testimonial={testimonial} />
           ))}
-        </ul>
+        </div>
+
+        {/* Trust bar */}
+        <div className="mt-20 text-center">
+          <p className="text-sm text-gray-500 mb-6">Trusted by writers at</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-50">
+            {["Harvard", "Stanford", "MIT", "Oxford", "Yale"].map((uni) => (
+              <span key={uni} className="text-xl font-bold text-gray-400">
+                {uni}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

@@ -97,8 +97,8 @@ const FeaturesAccordion = () => {
   const [activeStep, setActiveStep] = useState(0)
 
   return (
-    <section className="py-20 lg:py-28 bg-slate-50" id="how-it-works">
-      <div className=" mx-auto px-6">
+    <section className="py-20  lg:py-28 bg-slate-50" id="how-it-works">
+      <div className=" max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">
