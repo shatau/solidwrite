@@ -9,7 +9,7 @@ const Hero = () => {
   const [detectionResult, setDetectionResult] = useState(null)
   const [error, setError] = useState(null)
   const [showResults, setShowResults] = useState(false)
-  const maxWords = 500
+  const maxWords = 300
   const minWords = 50
 
   const wordCount = text.trim().split(/\s+/).filter(Boolean).length
