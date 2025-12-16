@@ -11,16 +11,16 @@ export async function POST(req) {
       );
     }
 
-    // Count words and enforce 500 word limit
+    // Count words and enforce 300 word limit
     const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
     
-    if (wordCount > 500) {
+    if (wordCount > 300) {
       return NextResponse.json(
         { 
           error: 'Text exceeds maximum length',
-          message: 'Please limit your text to 500 words or less.',
+          message: 'Please limit your text to 300 words or less.',
           wordCount,
-          maxWords: 500
+          maxWords: 300
         },
         { status: 400 }
       );
