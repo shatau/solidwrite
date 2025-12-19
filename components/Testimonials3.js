@@ -102,7 +102,7 @@ const Testimonials3 = () => {
         <div className="text-center mb-20">
           <p className="text-sm font-semibold text-blue-600 uppercase tracking-wider mb-3">Testimonials</p>
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Loved by 50,000+ Writers
+            Loved by Writers
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             See why students, professionals, and content creators trust us with their most important work.

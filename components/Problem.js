@@ -64,7 +64,7 @@ const Problem = () => {
         </div>
 
         {/* Stats bar */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+        {/* <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           {[
             { value: "99.2%", label: "Success Rate" },
             { value: "1M+", label: "Texts Humanized" },
@@ -76,7 +76,7 @@ const Problem = () => {
               <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* CSS for animation */}

@@ -9,7 +9,7 @@ const Hero = () => {
   const [detectionResult, setDetectionResult] = useState(null)
   const [error, setError] = useState(null)
   const [showResults, setShowResults] = useState(false)
-  const maxWords = 300
+  const maxWords = 200
   const minWords = 50
 
   const wordCount = text.trim().split(/\s+/).filter(Boolean).length
@@ -104,10 +104,10 @@ const Hero = () => {
 <div className="absolute top-0 left-0 w-[600px] h-[800px] bg-gradient-to-br from-blue-200/30 to-purple-200/30 rounded-full blur-3xl" />
 <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-gradient-to-br from-purple-200/40 to-blue-100/40 rounded-full blur-3xl" />
 
-        <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-20 lg:pt-20 lg:pb-28">
+        <div className="relative max-w-7xl mx-auto px-6 pt-24 pb-20 lg:pt-32 lg:pb-28">
           <div className="flex flex-col items-center text-center">
             {/* Trust badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-transparent border  border-blue-200">
+            {/* <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-transparent border  border-blue-200">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
@@ -115,10 +115,10 @@ const Hero = () => {
               <span className="text-sm text-gray-800">
                 Join <span className="font-semibold text-gray-800">40,000+</span> writers worldwide
               </span>
-            </div>
+            </div> */}
 
             {/* Headline */}
-            <h1 className="text-5xl sm:text-6xl lg:text-6xl font-extrabold tracking-tight text-gray-900 max-w-5xl leading-[1.1]">
+            <h1 className="text-5xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 max-w-5xl leading-[1.1]">
               Make AI Text Sound
               <span className="relative mx-3">
                 <span className="relative z-10 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
@@ -245,7 +245,7 @@ const Hero = () => {
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Headline */}
         <div className="text-center mb-12">
-        <h1 className="text-5xl sm:text-6xl lg:text-6xl mx-auto font-extrabold tracking-tight text-gray-900 max-w-5xl leading-[1.1]">
+        <h1 className="text-5xl sm:text-5xl lg:text-6xl mx-auto font-extrabold tracking-tight text-gray-900 max-w-5xl leading-[1.1]">
               Make AI Text Sound
               <span className="relative mx-3">
                 <span className="relative z-10 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
